@@ -30,6 +30,10 @@ See specs for example use
 * args (Used in generator CLI testing)
 * last_option *args : Returns last argument if hash or empty hash otherwise
 
+### Hash
+
+* hash_revert : Reverse keys and values
+
 ### File
 
 * self.blank? and blank? : Is file empty? 
