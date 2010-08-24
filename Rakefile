@@ -3,7 +3,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "sugar-high"
     gem.summary = %Q{Ruby convenience sugar packs!}
-    gem.description = %Q{Collection of Ruby convenience functionality inspired by the 'zuker' project}
+    gem.description = %Q{More Ruby sugar - inspired by the 'zuker' project}
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/sugar-high"
     gem.authors = ["Kristian Mandrup"]
