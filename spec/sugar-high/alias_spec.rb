@@ -28,7 +28,7 @@ class Ged
     'hejsa'
   end
   
-  multi_alias :_before_ => :kristian, :hello => :hejsa  
+  multi_alias :_before_ => :kristian, :hejsa => :hello, :_direction_ => :reverse  
 end  
 
 class Wow

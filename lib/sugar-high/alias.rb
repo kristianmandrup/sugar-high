@@ -1,4 +1,5 @@
 require 'sugar-high/methods'
+require 'sugar-high/hash'
 
 class Module         
   
@@ -30,6 +31,9 @@ class Module
 
     options.delete(:_after_)
     options.delete(:_before_)
+    direction = options.delete(:_direction_)
+    
+    options = options.hash_revert if direction == :reverse
     
     options.each_pair do |original, aliases|
       alias_methods name.to_sym, original, [aliases].flatten, config_options
