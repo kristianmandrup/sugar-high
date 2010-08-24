@@ -40,10 +40,10 @@ class Module
     aliases.each do |alias_name|                       
       new_alias     = make_name(name, alias_name.to_s, config_options)
       original_name = make_name(name, original.to_s, config_options)
-      begin 
+      begin         
         alias_method new_alias, original_name
       rescue
-        raise ArgumentError, "Error creaing alias for ##{original_name} with #{new_alias}"
+        raise ArgumentError, "Error creating alias for ##{original_name} with ##{new_alias}"
       end        
     end
   end

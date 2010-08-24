@@ -31,20 +31,43 @@ class Ged
   multi_alias :_before_ => :kristian, :hello => :hejsa  
 end  
 
+class Wow
+  REGISTRATION_LINKS = {
+    :new_registration => :sign_up,
+    :edit_registration => :edit_profile
+  }
+
+  # new_registration_link, edit_registration_link
+  REGISTRATION_LINKS.keys.each do |name|
+    puts "name: #{name}"
+    class_eval %{
+      def #{name}_link
+      end
+    }
+  end
+  multi_alias REGISTRATION_LINKS.merge(:_after_ => :link)  
+end
+     
 describe "SugarHigh" do
   describe "Arguments" do    
-    context 'hould alias :hello_kristian with :howdy_kristian ' do
+    context 'should alias :hello_kristian with :howdy_kristian ' do
       it "should find alias" do
         Abc.new.respond_to?(:howdy_kristian).should be_true
       end
+    end
 
-      it "should find -alloha alias method for kristian" do
-        Xyz.new.respond_to?(:alloha_kristian).should be_true
-      end
+    it "should find -alloha alias method for kristian" do
+      Xyz.new.respond_to?(:alloha_kristian).should be_true
+    end
 
-      it "should find -hejsa alias method for kristian" do
-        Ged.new.respond_to?(:kristian_hejsa).should be_true
-      end
+    it "should find -hejsa alias method for kristian" do
+      Ged.new.respond_to?(:kristian_hejsa).should be_true
+    end
+
+    it "should find alias methods!" do
+      w = Wow.new
+      w.respond_to?(:new_registration_link).should be_true
+      w.respond_to?(:sign_up_link).should be_true
     end
   end
 end
