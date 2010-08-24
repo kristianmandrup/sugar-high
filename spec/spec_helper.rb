@@ -1,9 +1,15 @@
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'rspec'
+require 'rspec/autorun'
 require 'sugar-high'
-require 'spec'
-require 'spec/autorun'
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   
+end
+
+def fixtures_dir
+  File.dirname(__FILE__) + '/fixtures'
+end
+
+def fixture_file name
+  File.join(fixtures_dir, name)
 end
