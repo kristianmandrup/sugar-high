@@ -45,6 +45,10 @@ PathString:
 * up lv   : Go up some directory levels, prefixing with a number of '../'
 * down lv : Go down some directory levels, stripping off a number of prefixed '../'
 
+### Includes
+
+* includes : Includes modules listed as symbols
+
 ### Kind of
 
 * any_kind_of? *const_list

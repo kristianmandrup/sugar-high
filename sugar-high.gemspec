@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/sugar-high/alias.rb",
      "lib/sugar-high/arguments.rb",
      "lib/sugar-high/file.rb",
+     "lib/sugar-high/hash.rb",
      "lib/sugar-high/kind_of.rb",
      "lib/sugar-high/matchers/have_aliases.rb",
      "lib/sugar-high/metaclass.rb",
