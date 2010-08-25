@@ -3,13 +3,10 @@ class NilClass
     true
   end
   alias_method :wblank?, :blank?
+  alias_method :empty?, :blank?
 
   def any?
     false
-  end
-
-  def empty?
-    true
   end
 end
 

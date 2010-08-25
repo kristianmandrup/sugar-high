@@ -69,9 +69,12 @@ PathString:
 
 Create empty namespaces
 
-### String
+### Blank
 
-* blank?
+* blank?  : Empty string? (works on nil)
+* wblank? : Blank including whitespace only? (works on nil)
+* empty?  : array and nil
+* any?    : array and nil
 
 ## RSpec 2 Matchers
 
