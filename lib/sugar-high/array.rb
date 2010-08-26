@@ -8,5 +8,5 @@ class Array
       res.reject{|a| a.kind_of? Fixnum}
     end    
     res.map(&:to_s).map(&:to_sym)
-  end
+  end  
 end
