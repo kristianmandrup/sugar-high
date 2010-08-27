@@ -1,4 +1,4 @@
-require 'sugar-high/string'
+require 'sugar-high/blank'
 
 class File
   def self.blank? file_name
@@ -11,6 +11,12 @@ class File
     File.zero?(self.path)
   end
 end                  
+
+class Array
+  def file_names ext = '*'
+    self.map{|a| a.gsub( /(.*)\//, '').gsub(/\.#{Regexp.escape(ext)}/, '')}
+  end
+end
 
 class String  
   def path

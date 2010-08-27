@@ -1,5 +1,11 @@
 require 'active_support/inflector'
 
+class Module
+  def last_name
+    name.gsub /^(.*)::/, ''
+  end
+end
+
 def modules *module_names, &block
   module_names.flatten.each do |name|
     class_eval %{

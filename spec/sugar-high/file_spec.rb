@@ -26,6 +26,13 @@ describe "SugarHigh" do
       end
     end
   end
+
+  describe '#file_names' do    
+    it "should return all file names of an array of paths to files" do
+      expr = fixtures_dir + '/*.txt'
+      Dir.glob(expr).file_names('txt').should == ['empty', 'non-empty']
+    end
+  end
   
   describe 'String path ext' do    
     describe '#path' do    
