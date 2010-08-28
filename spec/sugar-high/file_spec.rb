@@ -3,8 +3,13 @@ require 'sugar-high/file'
 
 describe "SugarHigh" do
   describe "File" do
-    let(:empty_file) { fixture_file 'empty.txt' }
-    let(:file)       { fixture_file 'non-empty.txt'}
+    let(:empty_file)      { fixture_file 'empty.txt' }
+    let(:non_empty_file)  { fixture_file 'non-empty.txt'} 
+    let(:replace_file)    { fixture_file 'file.txt' }
+
+    before :each do
+      File.delete replace_file if File.file?(replace_file)
+    end
 
     describe '#self.blank' do
       it "should return true for an empty file" do
@@ -12,7 +17,7 @@ describe "SugarHigh" do
       end
 
       it "should return false for a NON-empty file" do
-        File.blank?(file).should_not be_true
+        File.blank?(non_empty_file).should_not be_true
       end
     end
 
@@ -22,12 +27,42 @@ describe "SugarHigh" do
       end
 
       it "should return false for a NON-empty file" do
-        File.new(file).blank?.should_not be_true
+        File.new(non_empty_file).blank?.should_not be_true
       end
     end
   end
 
-  describe '#file_names' do    
+  describe '#replace_content_from' do    
+    let(:replace_file)    { fixture_file 'file.txt' }
+    
+    it "should remove content from existing file" do      
+      File.overwrite(replace_file) do
+        'Hello You'
+      end
+      File.replace_content_from replace_file, :where => 'You', :with => 'Me'
+      File.read(replace_file).should_not match /You/              
+    end
+  end
+
+  describe '#remove_content_from' do    
+    let(:replace_file)    { fixture_file 'file.txt' }    
+    
+    it "should remove content from existing file" do      
+      File.overwrite(replace_file) do
+        'Hello You'
+      end
+      File.remove_content_from replace_file, :where => 'You'
+      File.read(replace_file).should_not match /You/
+    end
+  end
+
+  describe '#file_names' do 
+    let(:replace_file)    { fixture_file 'file.txt' }        
+    
+    before :each do
+      File.delete replace_file if File.file?(replace_file)
+    end    
+       
     it "should return all file names of an array of paths to files" do
       expr = fixtures_dir + '/*.txt'
       Dir.glob(expr).file_names('txt').should == ['empty', 'non-empty']

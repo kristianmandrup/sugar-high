@@ -36,7 +36,9 @@ See specs for example use
 
 ### File
 
-* self.blank? and blank? : Is file empty? 
+* self.blank? and blank? : Is file empty?
+* self.overwrite : overwrite file with new content (mode = 'w')
+* self.append : append to existing file with content or create new (mode = 'w+')
 
 String:
 * path : expand String with path operations :up and :down
