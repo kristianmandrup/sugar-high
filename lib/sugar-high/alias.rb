@@ -52,6 +52,13 @@ class Module
     end
   end
 
+  def alias_for(original, *aliases)
+    aliases.each do |alias_meth|
+      class_eval "alias_method :#{alias_meth}, :#{original} if respond_to? :#{original}"  
+    end
+  end
+  alias_method :aliases_for, :alias_for
+
   protected
 
   def make_name name, alias_name, config_options

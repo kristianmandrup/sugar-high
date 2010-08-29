@@ -32,30 +32,6 @@ describe "SugarHigh" do
     end
   end
 
-  describe '#replace_content_from' do    
-    let(:replace_file)    { fixture_file 'file.txt' }
-    
-    it "should remove content from existing file" do      
-      File.overwrite(replace_file) do
-        'Hello You'
-      end
-      File.replace_content_from replace_file, :where => 'You', :with => 'Me'
-      File.read(replace_file).should_not match /You/              
-    end
-  end
-
-  describe '#remove_content_from' do    
-    let(:replace_file)    { fixture_file 'file.txt' }    
-    
-    it "should remove content from existing file" do      
-      File.overwrite(replace_file) do
-        'Hello You'
-      end
-      File.remove_content_from replace_file, :where => 'You'
-      File.read(replace_file).should_not match /You/
-    end
-  end
-
   describe '#file_names' do 
     let(:replace_file)    { fixture_file 'file.txt' }        
     

@@ -1,6 +1,17 @@
 require 'sugar-high/blank'
+require 'sugar-high/arguments'
 
-class File
+class File 
+  def self.delete! name
+    return nil if !File.exist?(name)
+    File.delete name
+  end
+
+  def self.delete_file! name
+    return nil if !File.file?(name)
+    File.delete name
+  end
+  
   def self.blank? file_name
     raise ArgumentError, "Filename argument must not be blank" if file_name.blank?
     raise ArgumentError, "There is no file at: #{file_name}" if !File.file?(file_name)
@@ -57,10 +68,81 @@ class File
     true # signal success!
   end
 
-  # TODO: Needs spec
+
   def self.remove_content_from file_name, options = {}, &block
     replace_content_from file_name, options.merge(:with => ''), &block
-  end    
+  end   
+
+  # TODO: Needs spec
+  
+  # insert_into 'my_file.txt', :after => 'Blip', :content => 'Hello
+  # insert_into 'my_file.txt', :after => 'Blip', 'Hello
+  # insert_into 'my_file.txt', :after => 'Blip' do 
+  #  'Hello'
+  # end
+  
+  def self.insert_into file_name, *args, &block
+    options = last_option args
+    content = Insert.content options, *args, &block
+
+    file = File.new(file_name)
+    return nil if !File.exist?(file)
+
+    # already inserted?
+    return nil if content.blank? || (file.read =~ /#{content}/)
+
+    place, marker = if options[:before] 
+      [ :before, options[:before] ]
+      else
+      [ :after, options[:after] ]
+    end 
+
+    marker = Insert.get_marker marker
+
+    return nil if !(File.new(file.path).read =~ /#{marker}/)
+    
+    Mutate.mutate_file file.path, marker, place do
+       content
+     end
+   end   
+
+   module Insert
+     def self.get_marker marker
+       marker = case marker
+       when String
+         Regexp.escape(marker)
+       when Regexp
+         marker.source  
+       end
+     end
+
+     def self.content options = {}, *args, &block
+       case args.first
+       when String
+         args.first
+       when Hash
+         options[:content]      
+       else
+         return yield if block
+         raise ArgumentError, "You must supply content to insert, either as a String before the options hash, a :content option or a block" 
+       end     
+     end
+   end
+
+   module Mutate     
+     def self.mutate_file file, marker, place, &block
+       raise ArgumentError, "You must define a replacement marker for a :before or :after key" if !marker 
+              
+       replace_in_file file, /(#{marker})/mi do |match|
+         place == :after ? "#{match}\n  #{yield}" : "#{yield}\n  #{match}"         
+       end
+     end  
+   
+     def self.replace_in_file(path, regexp, *args, &block)
+       content = File.read(path).gsub(regexp, *args, &block)
+       File.open(path, 'wb') { |file| file.write(content) }
+     end    
+   end
 end                  
 
 class Array
