@@ -8,7 +8,7 @@ begin
     gem.homepage = "http://github.com/kristianmandrup/sugar-high"
     gem.authors = ["Kristian Mandrup"]
     gem.add_development_dependency "rspec", "~> 2.0.0"
-    gem.add_dependency "require_all", "~>= 1.1.0"
+    gem.add_dependency "require_all", "~> 1.1.0"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
