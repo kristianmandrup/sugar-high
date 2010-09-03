@@ -27,7 +27,7 @@ class Module
       options = args[1]
     end          
     
-    raise ArgumentError, "Name of method pattern to alias not specified. Please pass name as either first argument or as :before or :after option" if !name
+    raise ArgumentError, "Name of method pattern to alias not specified. Please pass name as either first argument or as :_before_ or :_after_ option" if !name
 
     options.delete(:_after_)
     options.delete(:_before_)
