@@ -1,10 +1,10 @@
 class String 
   def to_regexp
-    Regexp.escape(self)
+    /#{Regexp.escape(self)}/
   end
 end
 
-class Regexpr
+class Regexp
   def to_regexp
     self
   end
