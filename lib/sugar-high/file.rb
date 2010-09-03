@@ -76,7 +76,7 @@ class File
   # TODO: Needs spec
   
   # insert_into 'my_file.txt', :after => 'Blip', :content => 'Hello
-  # insert_into 'my_file.txt', :after => 'Blip', 'Hello
+  # insert_into 'my_file.txt', 'Hello', :after => 'Blip' 
   # insert_into 'my_file.txt', :after => 'Blip' do 
   #  'Hello'
   # end

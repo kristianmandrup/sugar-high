@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/sugar-high/methods.rb",
      "lib/sugar-high/module.rb",
      "lib/sugar-high/not.rb",
+     "lib/sugar-high/regexp.rb",
      "lib/sugar-high/rspec/configure.rb",
      "lib/sugar-high/rspec/matchers/have_aliases.rb",
      "spec/fixtures/empty.txt",
@@ -70,7 +71,8 @@ Gem::Specification.new do |s|
      "spec/sugar-high/includes_spec.rb",
      "spec/sugar-high/kind_of_spec.rb",
      "spec/sugar-high/methods_spec.rb",
-     "spec/sugar-high/module_spec.rb"
+     "spec/sugar-high/module_spec.rb",
+     "spec/sugar-high/regexp_spec.rb"
   ]
 
   if s.respond_to? :specification_version then
