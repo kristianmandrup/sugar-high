@@ -18,8 +18,8 @@ class Module
   end 
 
   def includes_and_extends *module_names
-    includes module_name
-    extends module_name
+    includes module_names
+    extends module_names
   end    
 
   alias_method :extends_and_includes, :includes_and_extends
