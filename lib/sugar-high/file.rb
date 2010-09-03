@@ -154,10 +154,14 @@ end
 class String  
   def path
     self.extend PathString
-  end 
+  end      
 end
 
 module PathString
+  def exists?  
+    File.exist? self
+  end
+  
   def up lv
     ('../' * lv) + self
   end
