@@ -1,5 +1,6 @@
 require 'sugar-high/blank'
 require 'sugar-high/arguments'
+require 'sugar-high/path'
 
 class File 
   def self.delete! name
