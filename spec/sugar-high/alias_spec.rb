@@ -65,6 +65,20 @@ class Singular2
 end  
 
 
+class AliasHash
+  def monsters
+    'monsters'
+  end
+
+  def monster
+    'monster'
+  end
+
+  
+  alias_hash :monsters => :beasts, :singularize => true
+end  
+
+
 class Wow
   REGISTRATION_LINKS = {
     :new_registration => :sign_up,
@@ -113,6 +127,13 @@ describe "SugarHigh" do
     it "should find pluralized alias" do
       Plural2.new.respond_to?(:beasts).should be_true
     end
+
+    it "should find nice aliases from using alias_hash" do
+      ah = AliasHash.new
+      ah.beasts.should == 'monsters'
+      ah.beast.should == 'monster'      
+    end
+
 
     it "should find alias methods!" do
       w = Wow.new

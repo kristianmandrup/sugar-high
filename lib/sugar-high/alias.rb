@@ -55,6 +55,18 @@ class Module
     end
   end
 
+  def alias_hash(hash)
+    pluralize = hash.delete(:pluralize)
+    singularize = hash.delete(:singularize)
+    # option = :pluralize => pluralize, :singularize => singularize
+    
+    hash.each_pair do |original, alias_meth|
+      alias_for original, alias_meth
+      alias_for original.to_s.singularize, alias_meth.to_s.singularize, :singularize => true if singularize
+      alias_for original.to_s.pluralize, alias_meth.to_s.pluralize, :pluralize => true if pluralize
+    end
+  end
+
   def alias_for(original, *aliases)
     pluralize = last_option(aliases)[:pluralize]
     singularize = last_option(aliases)[:singularize]
