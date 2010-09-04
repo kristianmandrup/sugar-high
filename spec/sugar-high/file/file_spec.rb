@@ -55,6 +55,18 @@ describe "SugarHigh" do
       end
     end
 
+    it "should read all the content before a given marker" do
+      content = File.read_from non_empty_file, :before => 'blap'
+      content.should match /blip/
+      content.should_not match /blap/
+    end
+
+    it "should read all the content after a given marker" do
+      content = File.read_from non_empty_file, :after => 'blap'
+      content.should match /blup/
+      content.should_not match /blap/
+    end
+
     it "should read all the content before a given marker into a block" do
       File.read_from non_empty_file, :before => 'blap' do |content|
         content.should match /blip/

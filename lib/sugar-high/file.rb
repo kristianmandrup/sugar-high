@@ -78,8 +78,8 @@ class File
     if options[:before] 
       begin
         regexp = options[:before].to_regexp
-        index = content =~ regexp
-        return content[0..index]
+        index = content.match(regexp).offset_before
+        content = content[0..index]
       rescue
         raise ArgumentError, ":before option must be a string or regular expression, was : #{options[:before]}"
       end
@@ -88,14 +88,13 @@ class File
     if options[:after]   
       begin
         regexp = options[:after].to_regexp
-        index = content =~ regexp
-        match_txt_length = content.match(regexp).length
-        after_index = index + match_txt_length
-        return content[after_index..-1]      
+        index = content.match(regexp).offset_after
+        content = content[index..-1]      
       rescue
         raise ArgumentError, ":after option must be a string or regular expression, was : #{options[:after]}"
       end      
     end
+    yield content if block
     content
   end
 

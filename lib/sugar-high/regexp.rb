@@ -7,6 +7,16 @@ end
 class Regexp
   def to_regexp
     self
+  end  
+end
+
+class MatchData
+  def offset_after
+    offset(0)[1] +1
+  end
+
+  def offset_before
+    offset(0)[0] -1    
   end
 end
 
