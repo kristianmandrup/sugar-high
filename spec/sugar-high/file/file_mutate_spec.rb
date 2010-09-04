@@ -63,6 +63,13 @@ describe "SugarHigh::File" do
       File.read(insertion_file).should_not match /Hello Goodbye/
     end
 
+    it "should insert Hello before Goodbye using a block as content to insert" do
+      File.insert_into insertion_file, :before => 'Goodbye' do
+        'Hello '
+      end
+      File.read(insertion_file).should_not match /Hello Goodbye/
+    end
+
     it "should insert Hello after Goodbye using a :with option and a Regexp for the after expression" do
       File.insert_into insertion_file, :content => ' Hello', :after => /Goodbye/ 
       File.read(insertion_file).should_not match /Goodbye Hello/

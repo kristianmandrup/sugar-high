@@ -150,7 +150,7 @@ class File
        when String
          args.first
        when Hash
-         options[:content]      
+         options[:content] || yield if block      
        else
          return yield if block
          raise ArgumentError, "You must supply content to insert, either as a String before the options hash, a :content option or a block" 
