@@ -1,10 +1,6 @@
 require 'sugar-high/kind_of'
 
-class Array
-  def strings
-    self.select_kinds_of String
-  end    
-    
+class Array    
   def to_symbols option=nil
     res = self.flatten
     res = case option

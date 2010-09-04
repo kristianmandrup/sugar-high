@@ -115,7 +115,25 @@ describe "SugarHigh" do
         # puts "all kinds: #{@label_list.all_kinds}"
         @label_list.all_kinds.should == [Symbol, String]
       end      
+    end 
+    
+    describe '#select_strings' do    
+      it "should map mixed array to String only array" do
+        [1, 'blip', [3, "hello"]].select_strings.should == ['blip']
+      end    
     end
+
+    describe '#select_labels' do    
+      it "should map mixed array to String only array" do
+        [1, :blap, 'blip', [3, "hello"]].select_labels.should include(:blap, 'blip')
+      end    
+    end
+
+    describe '#select_only' do    
+      it "should map mixed array to String only array" do
+        [1, :blap, 'blip', [3, "hello"]].select_only(:string).should include('blip')
+      end    
+    end    
   end
 end
     
