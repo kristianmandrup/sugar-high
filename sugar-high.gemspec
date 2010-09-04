@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/sugar-high/methods.rb",
      "lib/sugar-high/module.rb",
      "lib/sugar-high/not.rb",
+     "lib/sugar-high/path.rb",
      "lib/sugar-high/regexp.rb",
      "lib/sugar-high/rspec/configure.rb",
      "lib/sugar-high/rspec/matchers/have_aliases.rb",
@@ -53,6 +54,7 @@ Gem::Specification.new do |s|
      "spec/sugar-high/kind_of_spec.rb",
      "spec/sugar-high/methods_spec.rb",
      "spec/sugar-high/module_spec.rb",
+     "spec/sugar-high/path_spec.rb",
      "spec/sugar-high/regexp_spec.rb",
      "sugar-high.gemspec"
   ]
