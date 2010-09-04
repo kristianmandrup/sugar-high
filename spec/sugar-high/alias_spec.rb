@@ -31,6 +31,23 @@ class Ged
   multi_alias :_before_ => :kristian, :hejsa => :hello, :_direction_ => :reverse  
 end  
 
+class Plural
+  def monster
+    'monster'
+  end
+  
+  alias_for :monster, :pluralize => true
+end  
+
+class Singular
+  def monsters
+    'monsters'
+  end
+  
+  alias_for :monsters, :singularize => true
+end  
+
+
 class Wow
   REGISTRATION_LINKS = {
     :new_registration => :sign_up,
@@ -62,6 +79,14 @@ describe "SugarHigh" do
 
     it "should find -hejsa alias method for kristian" do
       Ged.new.respond_to?(:kristian_hejsa).should be_true
+    end
+
+    it "should find pluralized alias" do
+      Singular.new.respond_to?(:monsters).should be_true
+    end
+
+    it "should find singularized alias" do
+      Plural.new.respond_to?(:monster).should be_true
     end
 
     it "should find alias methods!" do

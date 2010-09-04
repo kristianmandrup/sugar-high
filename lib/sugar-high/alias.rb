@@ -1,5 +1,8 @@
 require 'sugar-high/methods'
 require 'sugar-high/hash'
+require 'sugar-high/arguments'
+require 'sugar-high/array'
+require 'active_support/inflector'
 
 class Module         
   
@@ -53,8 +56,14 @@ class Module
   end
 
   def alias_for(original, *aliases)
-    aliases.each do |alias_meth|
-      class_eval "alias_method :#{alias_meth}, :#{original} if respond_to? :#{original}"  
+    pluralize = last_option(aliases)[:pluralize]
+    singularize = last_option(aliases)[:singularize]
+
+    class_eval "alias_method :#{original.to_s.singularize}, :#{original}" if singularize
+    class_eval "alias_method :#{original.to_s.pluralize}, :#{original}" if pluralize
+
+    aliases.flatten.select_labels.each do |alias_meth|
+      class_eval "alias_method :#{alias_meth}, :#{original}"
     end
   end
   alias_method :aliases_for, :alias_for
