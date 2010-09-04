@@ -15,5 +15,13 @@ describe "SugarHigh" do
         /hello/.to_regexp.should be_a_kind_of Regexp
       end
     end
+
+    describe 'Array#grep_it' do
+      it "should grep using a regexp" do
+        ['hello', 'hello you', 'not you'].grep_it(/hello/).size.should == 2
+        ['hello', 'hello you', 'not you'].grep_it('hello').size.should == 2        
+        ['hello', 'hello you', 'not you'].grep_it(nil).size.should == 3                
+      end
+    end
   end
 end

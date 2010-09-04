@@ -9,3 +9,10 @@ class Regexp
     self
   end
 end
+
+class Array
+  def grep_it expr
+    return self if !expr
+    self.grep(expr.to_regexp)
+  end
+end
