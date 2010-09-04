@@ -44,5 +44,30 @@ describe "SugarHigh" do
       Dir.glob(expr).file_names('txt').should == ['empty', 'non-empty']
     end
   end  
+
+  describe '#read_from' do
+    let(:non_empty_file)      { fixture_file 'non-empty.txt' }
+                
+    it "should read all the content into a block" do
+      File.read_from non_empty_file do |content|
+        content.should match /blip/
+        content.should match /blup/        
+      end
+    end
+
+    it "should read all the content before a given marker into a block" do
+      File.read_from non_empty_file, :before => 'blap' do |content|
+        content.should match /blip/
+        content.should_not match /blap/        
+      end
+    end
+
+    it "should read all the content after a given marker into a block" do
+      File.read_from non_empty_file, :after => 'blap' do |content|
+        content.should match /blup/
+        content.should_not match /blap/        
+      end
+    end
+  end  
 end
     

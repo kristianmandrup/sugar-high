@@ -1,6 +1,7 @@
 require 'sugar-high/blank'
 require 'sugar-high/arguments'
 require 'sugar-high/path'
+require 'sugar-high/regexp'
 
 class File 
   def self.delete! name
@@ -69,6 +70,34 @@ class File
     true # signal success!
   end
 
+
+  def self.read_from file_name, options = {}, &block
+    raise ArgumentError, "File to read from not found or not a file: #{file_name}" if !File.file? file_name
+    content = File.read file_name
+    
+    if options[:before] 
+      begin
+        regexp = options[:before].to_regexp
+        index = content =~ regexp
+        return content[0..index]
+      rescue
+        raise ArgumentError, ":before option must be a string or regular expression, was : #{options[:before]}"
+      end
+    end 
+
+    if options[:after]   
+      begin
+        regexp = options[:after].to_regexp
+        index = content =~ regexp
+        match_txt_length = content.match(regexp).length
+        after_index = index + match_txt_length
+        return content[after_index..-1]      
+      rescue
+        raise ArgumentError, ":after option must be a string or regular expression, was : #{options[:after]}"
+      end      
+    end
+    content
+  end
 
   def self.remove_content_from file_name, options = {}, &block
     replace_content_from file_name, options.merge(:with => ''), &block
