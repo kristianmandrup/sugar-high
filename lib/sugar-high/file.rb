@@ -150,29 +150,3 @@ class Array
     self.map{|a| a.gsub( /(.*)\//, '').gsub(/\.#{Regexp.escape(ext)}/, '')}
   end
 end
-
-class String  
-  def path
-    self.extend PathString
-  end      
-end
-
-module PathString
-  def exists?  
-    File.exist? self
-  end
-  
-  def up lv
-    ('../' * lv) + self
-  end
-
-  def down lv
-    up_dir = Regexp.escape('../')
-    orig = self.clone
-    lv.times do
-      self.gsub! /^#{up_dir}/, ''
-      return self if self == orig
-    end
-    self
-  end
-end

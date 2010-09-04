@@ -43,33 +43,6 @@ describe "SugarHigh" do
       expr = fixtures_dir + '/*.txt'
       Dir.glob(expr).file_names('txt').should == ['empty', 'non-empty']
     end
-  end
-  
-  describe 'String path ext' do    
-    describe '#path' do    
-      it "should return a String extended with PathString" do
-        path_str = "a/b/c".path
-        path_str.kind_of?(PathString).should be_true
-        path_str.respond_to?(:up).should be_true
-        path_str.respond_to?(:down).should be_true
-      end
-    end 
-  end
-
-  describe 'PathString' do    
-    describe '#up' do    
-      it "should go up two folder levels" do
-        up_path = "a/b/c".path.up(2)        
-        up_path.should == "../../a/b/c"
-      end
-    end
-
-    describe '#down' do    
-      it "should go down two folder levels" do
-        dwn_path = "../../a/b/c".path.down(2)        
-        dwn_path.should == "a/b/c"
-      end
-    end
-  end
+  end  
 end
     
