@@ -64,6 +64,8 @@ class Module
 
     aliases.flatten.select_labels.each do |alias_meth|
       class_eval "alias_method :#{alias_meth}, :#{original}"
+      class_eval "alias_method :#{alias_meth.to_s.pluralize}, :#{original}" if pluralize
+      class_eval "alias_method :#{alias_meth.to_s.singularize}, :#{original}" if singularize
     end
   end
   alias_method :aliases_for, :alias_for

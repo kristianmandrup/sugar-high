@@ -39,12 +39,29 @@ class Plural
   alias_for :monster, :pluralize => true
 end  
 
+class Plural2
+  def monster
+    'monster'
+  end
+  
+  alias_for :monster, :beast, :pluralize => true
+end  
+
+
 class Singular
   def monsters
     'monsters'
   end
   
   alias_for :monsters, :singularize => true
+end  
+
+class Singular2
+  def monsters
+    'monsters'
+  end
+  
+  alias_for :monsters, :beasts, :singularize => true
 end  
 
 
@@ -81,12 +98,20 @@ describe "SugarHigh" do
       Ged.new.respond_to?(:kristian_hejsa).should be_true
     end
 
-    it "should find pluralized alias" do
-      Singular.new.respond_to?(:monsters).should be_true
+    it "should find singularized alias" do
+      Singular.new.respond_to?(:monster).should be_true
     end
 
     it "should find singularized alias" do
-      Plural.new.respond_to?(:monster).should be_true
+      Singular2.new.respond_to?(:beast).should be_true
+    end
+
+    it "should find pluralized alias" do
+      Plural.new.respond_to?(:monsters).should be_true
+    end
+
+    it "should find pluralized alias" do
+      Plural2.new.respond_to?(:beasts).should be_true
     end
 
     it "should find alias methods!" do
