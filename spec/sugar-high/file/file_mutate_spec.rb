@@ -22,7 +22,7 @@ describe "SugarHigh::File" do
     end
   end
 
-  describe '#remove_content_from' do    
+  describe '#remove_content_from with :where option' do    
     let(:replace_file)    { fixture_file 'file.txt' }    
   
     it "should remove content from existing file" do      
@@ -33,6 +33,19 @@ describe "SugarHigh::File" do
       File.read(replace_file).should_not match /You/
     end
   end
+
+  describe '#remove_content_from with :content option' do    
+    let(:replace_file)    { fixture_file 'file.txt' }    
+  
+    it "should remove content from existing file" do      
+      File.overwrite(replace_file) do
+        'Hello You'
+      end
+      File.remove_content_from replace_file, :content => 'You'
+      File.read(replace_file).should_not match /You/
+    end
+  end
+
 
   describe '#insert_into' do
     let(:insertion_file)    { fixture_file 'insertion.txt' }    

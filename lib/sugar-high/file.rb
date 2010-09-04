@@ -39,7 +39,7 @@ class File
   # replaces content found at replacement_expr with content resulting from yielding block
   # File.replace_content_from 'myfile.txt', where => /HelloWorld/, with => 'GoodBye'
   def self.replace_content_from file_name, options = {}, &block
-    replacement_expr = options[:where]
+    replacement_expr = options[:where] || options[:content]
     new_content = options[:with]
 
     replacement_expr = case replacement_expr
@@ -48,7 +48,7 @@ class File
     when String
       /#{Regexp.escape(replacement_expr)}/
     else
-      raise ArgumentError, "Content to be replaced must be specified as either a String or Regexp in a :where option"
+      raise ArgumentError, "Content to be replaced must be specified as either a String or Regexp in a :where or :content option"
     end
 
     # get existing file content
