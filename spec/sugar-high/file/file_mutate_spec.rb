@@ -58,6 +58,20 @@ describe "SugarHigh::File" do
     end
   end
 
+  describe '#remove_from with block argument that is content to remove' do    
+    let(:replace_file)    { fixture_file 'file.txt' }    
+  
+    it "should remove content from existing file" do      
+      File.overwrite(replace_file) do
+        'Hello You'
+      end
+      File.remove_from replace_file do 
+        'You'
+      end
+      File.read(replace_file).should_not match /You/
+    end
+  end
+
 
   describe '#insert_into' do
     let(:insertion_file)    { fixture_file 'insertion.txt' }    

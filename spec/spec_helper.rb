@@ -1,5 +1,4 @@
 require 'rspec'
-require 'rspec/autorun'
 require 'sugar-high'
 
 RSpec.configure do |config|

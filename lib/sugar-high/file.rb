@@ -36,7 +36,8 @@ class File
     end
   end 
 
-  def self.remove_from file_name, content, &block
+  def self.remove_from file_name, content=nil, &block
+    content ||= yield
     replace_content_from file_name, :content => content, :with => '', &block
   end
   
