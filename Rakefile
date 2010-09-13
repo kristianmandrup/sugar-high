@@ -7,8 +7,10 @@ begin
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/sugar-high"
     gem.authors = ["Kristian Mandrup"]
-    gem.add_development_dependency "rspec", "~> 2.0.0"
-    gem.add_dependency "require_all", "~> 1.1.0"
+    gem.add_development_dependency "rspec", "~> 2.0.0.beta.22"
+
+    gem.add_dependency "require_all",       "~> 1.1.0"
+    gem.add_dependency "mocha",             "~> 0.9.8"
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError

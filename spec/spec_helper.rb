@@ -1,8 +1,8 @@
-require 'rspec'
+require 'rspec/core'
 require 'sugar-high'
 
 RSpec.configure do |config|
-  
+  config.mock_with :mocha
 end
 
 def fixtures_dir
