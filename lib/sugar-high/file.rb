@@ -35,6 +35,10 @@ class File
       f.puts content ||= yield
     end
   end 
+
+  def self.remove_from file_name, content, &block
+    replace_content_from file_name, :content => content, :with => '', &block
+  end
   
   # replaces content found at replacement_expr with content resulting from yielding block
   # File.replace_content_from 'myfile.txt', where => /HelloWorld/, with => 'GoodBye'
@@ -150,7 +154,7 @@ class File
        when String
          args.first
        when Hash
-         options[:content] || yield if block      
+         options[:content] || (yield if block)      
        else
          return yield if block
          raise ArgumentError, "You must supply content to insert, either as a String before the options hash, a :content option or a block" 

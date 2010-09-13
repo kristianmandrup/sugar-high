@@ -46,6 +46,18 @@ describe "SugarHigh::File" do
     end
   end
 
+  describe '#remove_from with String/Regexp argument that is content to remove' do    
+    let(:replace_file)    { fixture_file 'file.txt' }    
+  
+    it "should remove content from existing file" do      
+      File.overwrite(replace_file) do
+        'Hello You'
+      end
+      File.remove_from replace_file, 'You'
+      File.read(replace_file).should_not match /You/
+    end
+  end
+
 
   describe '#insert_into' do
     let(:insertion_file)    { fixture_file 'insertion.txt' }    
@@ -64,28 +76,29 @@ describe "SugarHigh::File" do
       File.insert_into insertion_file, :before => 'Goodbye' do
         'Hello'
       end
+      File.read(insertion_file).should match /Hello\s+Goodbye/      
     end
 
     it "should insert Hello before Goodbye using a content string arg" do
       File.insert_into insertion_file, "Hello ", :before => 'Goodbye'
-      File.read(insertion_file).should_not match /Hello Goodbye/
+      File.read(insertion_file).should match /Hello\s+Goodbye/
     end
 
     it "should insert Hello before Goodbye using a :content option" do
-      File.insert_into insertion_file, :content => 'Hello ', :before => 'Goodbye'
-      File.read(insertion_file).should_not match /Hello Goodbye/
+      File.insert_into insertion_file, :content => 'Hello', :before => 'Goodbye'
+      File.read(insertion_file).should match /Hello\s+Goodbye/
     end
 
     it "should insert Hello before Goodbye using a block as content to insert" do
       File.insert_into insertion_file, :before => 'Goodbye' do
-        'Hello '
+        'Hello'
       end
-      File.read(insertion_file).should_not match /Hello Goodbye/
+      File.read(insertion_file).should match /Hello\s+Goodbye/
     end
 
     it "should insert Hello after Goodbye using a :with option and a Regexp for the after expression" do
       File.insert_into insertion_file, :content => ' Hello', :after => /Goodbye/ 
-      File.read(insertion_file).should_not match /Goodbye Hello/
+      File.read(insertion_file).should match /Goodbye\s+Hello/
     end
   end
 end
