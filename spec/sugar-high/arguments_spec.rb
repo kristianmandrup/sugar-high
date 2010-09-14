@@ -27,6 +27,10 @@ describe "SugarHigh" do
         it "should return the default :hello" do
           last_arg(:hello, 3,4).should == :hello
         end
+
+        it "should return the :hello => 'abe' " do
+          last_arg({:hi => :def}, 3,4, :hi => 'abe').should == {:hi => 'abe'}
+        end
       end
     end
 
