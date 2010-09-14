@@ -22,6 +22,14 @@ describe "SugarHigh" do
       end
     end
 
+    describe "Last argument" do
+      context 'Last arg with default hello' do
+        it "should return the default :hello" do
+          last_arg(:hello, 3,4).should == :hello
+        end
+      end
+    end
+
     describe "Last option" do
       context 'Last arg is Hash' do
         it "should return the last hash" do

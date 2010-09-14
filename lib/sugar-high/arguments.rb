@@ -17,6 +17,12 @@ class String
 end
 
 def last_option *args
+  default = last_arg({}, *args)
   last = args.flatten.last
-  last.kind_of?(Hash) ? last : {}    
+  last.kind_of?(Hash) ? last : default    
+end
+
+def last_arg default, *args
+  last = args.flatten.last
+  last.kind_of?(Hash) ? last : default
 end
