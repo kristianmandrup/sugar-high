@@ -41,6 +41,10 @@ describe "SugarHigh" do
         end
 
         it "should return the arg value :def " do
+          last_arg_value({:hi => :def}, :hello => 'abe', :good => true).should == :def
+        end
+
+        it "should return the arg value :def " do
           last_arg_value({:hi => :def}, 3,4 ).should == :def
         end
       end

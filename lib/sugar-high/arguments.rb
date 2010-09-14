@@ -29,7 +29,8 @@ end
 
 def last_arg_value default, *args
   last = args.flatten.last
-  res = last.kind_of?(Hash) ? last : default
-  return res[default.keys.first] if default.kind_of? Hash
-  res
+  raise ArgumentError, "Default value must be a Hash, was #{default}" if !default.kind_of? Hash
+  key = default.keys.first
+  return default[key] if !last.kind_of? Hash
+  last[key] ? last[key] : default[key]
 end
