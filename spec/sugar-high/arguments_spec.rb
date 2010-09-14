@@ -34,6 +34,18 @@ describe "SugarHigh" do
       end
     end
 
+    describe "Last argument value" do
+      context 'Last arg with default hello' do
+        it "should return the arg value 'abe' " do
+          last_arg_value({:hi => :def}, 3,4, :hi => 'abe').should == 'abe'
+        end
+
+        it "should return the arg value :def " do
+          last_arg_value({:hi => :def}, 3,4 ).should == :def
+        end
+      end
+    end
+
     describe "Last option" do
       context 'Last arg is Hash' do
         it "should return the last hash" do

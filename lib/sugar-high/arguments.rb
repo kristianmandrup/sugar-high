@@ -26,3 +26,10 @@ def last_arg default, *args
   last = args.flatten.last
   last.kind_of?(Hash) ? last : default
 end
+
+def last_arg_value default, *args
+  last = args.flatten.last
+  res = last.kind_of?(Hash) ? last : default
+  return res[default.keys.first] if default.kind_of? Hash
+  res
+end
