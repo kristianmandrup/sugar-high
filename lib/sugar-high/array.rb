@@ -8,6 +8,6 @@ class Array
   end  
 
   def to_strings option=nil
-    self.select_labels.map(&:to_s)
+    self.flatten.select_labels.map(&:to_s)
   end  
 end

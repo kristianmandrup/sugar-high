@@ -9,7 +9,11 @@ describe "SugarHigh" do
       end
 
       it "should translate nested array of numbers and strings into symbols only array, including numbers" do
-        [1, 'blip', [3, "hello"]].to_symbols(:num).should == [:_1, :blip, :_3, :hello]        
+        [[1, 'blip', [3, "hello"]]].to_symbols(:num).should == [:_1, :blip, :_3, :hello]        
+      end
+
+      it "should translate nested array of numbers and strings into strings only array" do
+        [['blip', [3, :hello]]].to_strings.should == ['blip', 'hello']        
       end
     end        
   end
