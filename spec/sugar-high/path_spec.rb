@@ -14,15 +14,30 @@ end
 
 describe 'PathString' do    
   describe '#up' do    
-    it "should go up two folder levels" do
+    it "should go up two folder levels before path" do
       up_path = "a/b/c".path.up(2)        
       up_path.should == "../../a/b/c"
     end
   end
 
+  describe '#post_up' do    
+    it "should go up two folder levels at end of path" do
+      up_path = "a/b/c".path.post_up(2)        
+      up_path.should == "a/b/c/../.."
+    end
+  end
+
+
   describe '#down' do    
     it "should go down two folder levels" do
       dwn_path = "../../a/b/c".path.down(2)        
+      dwn_path.should == "a/b/c"
+    end
+  end 
+
+  describe '#down' do    
+    it "should go down two folder levels at end of path" do
+      dwn_path = "a/b/c/../..".path.post_down(2)        
       dwn_path.should == "a/b/c"
     end
   end 
