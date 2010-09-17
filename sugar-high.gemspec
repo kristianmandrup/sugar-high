@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.2.8"
+  s.version = "0.2.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-09-16}
+  s.date = %q{2010-09-17}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -50,6 +50,7 @@ Gem::Specification.new do |s|
      "spec/sugar-high/blank_spec.rb",
      "spec/sugar-high/file/file_mutate_spec.rb",
      "spec/sugar-high/file/file_spec.rb",
+     "spec/sugar-high/hash_spec.rb",
      "spec/sugar-high/includes_spec.rb",
      "spec/sugar-high/kind_of_spec.rb",
      "spec/sugar-high/methods_spec.rb",
@@ -71,6 +72,7 @@ Gem::Specification.new do |s|
      "spec/sugar-high/blank_spec.rb",
      "spec/sugar-high/file/file_mutate_spec.rb",
      "spec/sugar-high/file/file_spec.rb",
+     "spec/sugar-high/hash_spec.rb",
      "spec/sugar-high/includes_spec.rb",
      "spec/sugar-high/kind_of_spec.rb",
      "spec/sugar-high/methods_spec.rb",
