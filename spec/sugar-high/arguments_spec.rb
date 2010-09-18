@@ -30,6 +30,7 @@ describe "SugarHigh" do
 
         it "should return the :hello => 'abe' " do
           last_arg({:hi => :def}, 3,4, :hi => 'abe').should == {:hi => 'abe'}
+          last_arg({:hi => :def}, [3,4, :hi => 'abe']).should == {:hi => 'abe'}
         end
       end
     end
@@ -38,6 +39,7 @@ describe "SugarHigh" do
       context 'Last arg with default hello' do
         it "should return the arg value 'abe' " do
           last_arg_value({:hi => :def}, 3,4, :hi => 'abe').should == 'abe'
+          last_arg_value({:hi => :def}, [3,4, :hi => 'abe']).should == 'abe'          
         end
 
         it "should return the arg value :def " do
