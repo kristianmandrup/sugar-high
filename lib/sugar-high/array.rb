@@ -10,4 +10,16 @@ class Array
   def to_strings option=nil
     self.flatten.select_labels.map(&:to_s)
   end  
+  
+  def none?
+    self.flatten.compact.empty?
+  end
 end
+
+class NilClass
+  def none?
+    true
+  end
+end
+
+

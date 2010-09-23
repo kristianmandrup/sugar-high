@@ -16,5 +16,18 @@ describe "SugarHigh" do
         [['blip', [3, :hello]]].to_strings.should == ['blip', 'hello']        
       end
     end        
+    
+    describe '#to_strings' do    
+      it "should translate nested array of numbers and strings into symbols only array, excluding numbers" do
+        [1, 'blip', [3, "hello"]].to_strings.should == ['blip', 'hello']
+      end      
+    end    
+
+    describe '#none?' do    
+      it "should be none if no real values in array" do
+        [nil, nil].none?.should be_true
+        nil.none?.should be_true        
+      end      
+    end    
   end
 end
