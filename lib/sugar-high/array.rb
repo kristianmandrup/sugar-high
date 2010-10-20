@@ -15,13 +15,13 @@ class Array
     self.flatten.compact.empty?
   end 
   
- def flat_unique
-   self.flatten.compact.unique
+ def flat_uniq
+   self.flatten.compact.uniq
  end
 end
 
 class NilClass  
-  def flat_unique  
+  def flat_uniq  
     []
   end
   

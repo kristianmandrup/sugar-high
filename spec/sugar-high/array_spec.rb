@@ -23,6 +23,16 @@ describe "SugarHigh" do
       end      
     end    
 
+    describe '#flat_uniq' do    
+      it "should flatten array, remove nils and make unique" do
+        [1, 'blip', ['blip', nil, 'c'], nil].flat_uniq.should == [1, 'blip', 'c']
+      end      
+
+      it "should return empty list if called on nil" do
+        nil.flat_uniq.should == []
+      end      
+    end    
+
     describe '#none?' do    
       it "should be none if no real values in array" do
         [nil, nil].none?.should be_true
