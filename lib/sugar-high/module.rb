@@ -2,7 +2,6 @@ require 'active_support/inflector'
 
 class Module
   def last_name
-    # name.gsub /^(.*)::/, ''
     name.demodulize
   end
   alias_method :demodulize, :last_name

@@ -13,10 +13,18 @@ class Array
   
   def none?
     self.flatten.compact.empty?
-  end
+  end 
+  
+ def flat_unique
+   self.flatten.compact.unique
+ end
 end
 
-class NilClass
+class NilClass  
+  def flat_unique  
+    []
+  end
+  
   def none?
     true
   end
