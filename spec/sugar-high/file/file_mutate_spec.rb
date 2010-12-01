@@ -10,6 +10,37 @@ describe "SugarHigh::File" do
     File.delete replace_file if File.file?(replace_file)
   end
 
+  describe '#append with :content option' do    
+    let(:append_file)    { fixture_file 'file.txt' }
+  
+    it "should remove content from existing file" do      
+      File.overwrite(append_file) do
+        'Hello You'
+      end
+      File.append append_file, :content => 'Appended'
+      content = File.read(replace_file)
+      content.should match /Hello You/
+      content.should match /Appended/      
+    end
+  end
+
+  describe '#append with block' do    
+    let(:append_file)    { fixture_file 'file.txt' }
+  
+    it "should remove content from existing file" do      
+      File.overwrite(append_file) do
+        'Hello You'
+      end
+      File.append append_file do
+        'Appended'
+      end
+      content = File.read(replace_file)
+      content.should match /Hello You/
+      content.should match /Appended/      
+    end
+  end
+
+
   describe '#replace_content_from' do    
     let(:replace_file)    { fixture_file 'file.txt' }
   

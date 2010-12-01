@@ -31,7 +31,7 @@ class File
   end
 
   def self.append path, content=nil, &block
-    File.open(path, 'w+') do |f|
+    File.open(path, 'a') do |f|
       f.puts content ||= yield
     end
   end 
