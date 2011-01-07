@@ -153,5 +153,14 @@ describe "SugarHigh::File" do
       File.read(class_file).should match /end\s+# Hello\s+end/
       File.remove_content_from class_file, :content => '  # Hello'
     end    
+
+    it "should insert Hello before last end statement - block" do
+      File.insert_into class_file, :before_last => 'end' do
+        '  # Hello'
+      end
+      puts File.read(class_file)
+      File.read(class_file).should match /end\s+# Hello\s+end/
+      File.remove_content_from class_file, :content => '  # Hello'
+    end    
   end
 end

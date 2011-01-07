@@ -124,7 +124,7 @@ class File
     return nil if !File.exist?(file)
 
     # already inserted?
-    return nil if content.blank? || (file.read =~ /#{content}/)
+    return nil if content.blank? || (file.read =~ /#{Regexp.escape(content)}/)
 
     place, marker = if options[:before] 
         [ :before, options[:before] ]
@@ -137,7 +137,7 @@ class File
 
     marker = Insert.get_marker marker
 
-    return nil if !(File.new(file.path).read =~ /#{marker}/)
+    return nil if !(File.new(file.path).read =~ /#{Regexp.escape(marker)}/)
     
     Mutate.mutate_file file.path, marker, place do
        content
@@ -178,7 +178,7 @@ class File
          return
        end
                      
-       replace_in_file file, /(#{marker})/mi do |match|
+       replace_in_file file, /(#{Regexp.escape(marker)})/mi do |match|
          place == :after ? "#{match}\n  #{yield}" : "#{yield}\n  #{match}"         
        end
      end  
