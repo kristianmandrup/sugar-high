@@ -4,6 +4,7 @@ require 'sugar-high/file'
 describe "SugarHigh::File" do
   let(:empty_file)      { fixture_file 'empty.txt' }
   let(:non_empty_file)  { fixture_file 'non-empty.txt'} 
+  let(:class_file)      { fixture_file 'class_file.rb'} 
   let(:replace_file)    { fixture_file 'file.txt' }
 
   before :each do
@@ -145,5 +146,12 @@ describe "SugarHigh::File" do
       File.insert_into insertion_file, :content => ' Hello', :after => /Goodbye/ 
       File.read(insertion_file).should match /Goodbye\s+Hello/
     end
+    
+    it "should insert Hello before last end statement" do
+      File.insert_into class_file, :content => '  # Hello', :before_last => 'end' 
+      puts File.read(class_file)
+      File.read(class_file).should match /end\s+# Hello\s+end/
+      File.remove_content_from class_file, :content => '  # Hello'
+    end    
   end
 end

@@ -2,6 +2,7 @@ require 'sugar-high/blank'
 require 'sugar-high/arguments'
 require 'sugar-high/path'
 require 'sugar-high/regexp'
+require 'sugar-high/string'
 
 class File 
   def self.delete! name
@@ -126,10 +127,13 @@ class File
     return nil if content.blank? || (file.read =~ /#{content}/)
 
     place, marker = if options[:before] 
-      [ :before, options[:before] ]
+        [ :before, options[:before] ]
+      elsif options[:before_last]
+        [ :before_last, options[:before_last] ]
       else
-      [ :after, options[:after] ]
+        [ :after, options[:after] ]
     end 
+    
 
     marker = Insert.get_marker marker
 
@@ -165,8 +169,15 @@ class File
 
    module Mutate     
      def self.mutate_file file, marker, place, &block
-       raise ArgumentError, "You must define a replacement marker for a :before or :after key" if !marker 
-              
+       raise ArgumentError, "You must define a replacement marker for a :before, :before_last or :after key" if !marker 
+       
+       if place == :before_last
+         content = File.read(file)
+         content = content.insert_before_last yield, marker
+         File.open(file, 'wb') { |file| file.write(content) }         
+         return
+       end
+                     
        replace_in_file file, /(#{marker})/mi do |match|
          place == :after ? "#{match}\n  #{yield}" : "#{yield}\n  #{match}"         
        end
