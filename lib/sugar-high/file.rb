@@ -4,17 +4,7 @@ require 'sugar-high/path'
 require 'sugar-high/regexp'
 require 'sugar-high/string'
 
-class File 
-  def self.delete! name
-    return nil if !File.exist?(name)
-    File.delete name
-  end
-
-  def self.delete_file! name
-    return nil if !File.file?(name)
-    File.delete name
-  end
-  
+class File   
   def self.blank? file_name
     raise ArgumentError, "Filename argument must not be blank" if file_name.blank?
     raise ArgumentError, "There is no file at: #{file_name}" if !File.file?(file_name)
@@ -24,8 +14,6 @@ class File
   def blank?
     File.zero?(self.path)
   end   
-  
-
 
   def self.has_content? file_name, content_matcher, &block
     File.new(file_name).has_content? content_matcher, &block  
@@ -41,37 +29,72 @@ class File
     !(self.read =~ content_matcher).nil?
   end
 
-  def self.read_from file_name, options = {}, &block
-    raise ArgumentError, "File to read from not found or not a file: #{file_name}" if !File.file? file_name
-    content = File.read file_name
-    
-    if options[:before] 
-      begin
-        regexp = options[:before].to_regexp
-        index = content.match(regexp).offset_before
-        content = content[0..index]
-      rescue
-        raise ArgumentError, ":before option must be a string or regular expression, was : #{options[:before]}"
-      end
-    end 
+  def read_content options = {}, &block
+    File.read_from self.path, options, &block
+  end
+  alias_method :with_content, :read_content
 
-    if options[:after]   
-      begin
-        regexp = options[:after].to_regexp
-        index = content.match(regexp).offset_after
-        content = content[index..-1]      
-      rescue
-        raise ArgumentError, ":after option must be a string or regular expression, was : #{options[:after]}"
-      end      
+  class << self
+
+    def read_from file_name, options = {}, &block
+      raise ArgumentError, "File to read from not found or not a file: #{file_name}" if !File.file? file_name
+      content = File.read file_name
+    
+      if options[:before] 
+        begin
+          regexp = options[:before].to_regexp
+          index = content.match(regexp).offset_before
+          content = content[0..index]
+        rescue
+          raise ArgumentError, ":before option must be a string or regular expression, was : #{options[:before]}"
+        end
+      end 
+
+      if options[:after]   
+        begin
+          regexp = options[:after].to_regexp
+          index = content.match(regexp).offset_after
+          content = content[index..-1]      
+        rescue
+          raise ArgumentError, ":after option must be a string or regular expression, was : #{options[:after]}"
+        end      
+      end
+      yield content if block
+      content
     end
-    yield content if block
-    content
+    alias_method :read_content_from, :read_from
+    alias_method :with_content_from, :read_from
   end
 end
-                 
+
+class String
+  def as_filename
+    self.underscore  
+  end
+  
+  def valid_file_command?
+    self.to_sym.valid_file_command?
+  end
+end
+
+class Symbol
+  def as_filename
+    self.to_s.underscore  
+  end
+  
+  def valid_file_command?
+    [:read, :remove, :delete].include? self
+  end
+end                 
+
+class NilClass
+  def valid_file_command?
+    false
+  end
+end  
 
 class Array
   def file_names ext = '*'
-    self.map{|a| a.gsub( /(.*)\//, '').gsub(/\.#{Regexp.escape(ext)}/, '')}
+    self.map{|a| a.gsub( /(.*)\//, '').gsub(/\.#{Regexp.escape(ext.to_s)}/, '')}
   end
 end

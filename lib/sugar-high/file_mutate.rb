@@ -6,6 +6,20 @@ require 'sugar-high/string'
 require 'sugar-high/file'
 
 class File
+  class << self
+    def delete! name
+      return nil if !File.exist?(name)
+      File.delete name
+    end
+    alias_method :delete_file!, :delete!
+  end
+
+  def delete!
+    File.delete(self.path)
+  end
+  alias_method :delete_file!, :delete!
+  
+  
   def overwrite content=nil, &block           
     File.overwrite self.path, content, &block
   end
@@ -112,7 +126,7 @@ class File
 
     # already inserted?
     return nil if content.blank? 
-    return nil if !options[:repeat] && (file.read =~ /#{Regexp.escape(content)}/)
+    return nil if !options[:repeat] && (file.read =~ /#{Regexp.escape(content.to_s)}/)
 
     place, marker = if options[:before] 
         [ :before, options[:before] ]
@@ -125,7 +139,7 @@ class File
 
     marker = Insert.get_marker marker
 
-    return nil if !(File.new(file.path).read =~ /#{Regexp.escape(marker)}/)
+    return nil if !(File.new(file.path).read =~ /#{Regexp.escape(marker.to_s)}/)
     
     Mutate.mutate_file file.path, marker, place do
        content
@@ -166,7 +180,7 @@ class File
        return
      end
                  
-     replace_in_file file, /(#{Regexp.escape(marker)})/mi do |match|
+     replace_in_file file, /(#{Regexp.escape(marker.to_s)})/mi do |match|
        place == :after ? "#{match}\n  #{yield}" : "#{yield}\n  #{match}"         
      end
    end  

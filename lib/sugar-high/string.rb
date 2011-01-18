@@ -11,7 +11,7 @@ class String
       raise ArgumentException, "last argument is the marker and must be a String, Symbol or even Hash with a :marker option pointing to the marker (String or Symbol)"
     end      
   
-    marker = Regexp.escape(marker.reverse)
+    marker = Regexp.escape(marker.to_s.reverse)
     nl = Regexp.escape("\n")
     # puts self
     # puts "marker: #{marker}"

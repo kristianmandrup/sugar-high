@@ -1,4 +1,5 @@
 require 'sugar-high/kind_of'
+require 'sugar-high/path'
 
 class Array    
   def to_symbols option=nil
@@ -7,9 +8,27 @@ class Array
     res.select_labels.map(&:to_s).map(&:to_sym)
   end  
 
-  def to_strings option=nil
+  def to_strings
     self.flatten.select_labels.map(&:to_s)
   end  
+
+  def to_filenames
+    self.to_strings.map(&:underscore)
+  end  
+
+
+  def to_paths
+    self.map(&:path)
+  end
+
+  def file_join
+    File.join(*self.flatten)
+  end    
+
+  def to_files
+    self.map{|fp| fp.path.to_file }
+    self.extend FilesArray    
+  end
   
   def none?
     self.flatten.compact.empty?
@@ -17,7 +36,15 @@ class Array
   
  def flat_uniq
    self.flatten.compact.uniq
- end
+ end 
+end
+
+module FilesArray
+  def delete_all!
+    self.each do |f| 
+      f.delete! if f.kind_of?(File)
+    end
+  end
 end
 
 class NilClass  
