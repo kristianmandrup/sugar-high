@@ -3,6 +3,7 @@ require 'sugar-high/arguments'
 require 'sugar-high/path'
 require 'sugar-high/regexp'
 require 'sugar-high/string'
+require 'sugar-high/file_mutate'
 
 class File   
   def self.blank? file_name
