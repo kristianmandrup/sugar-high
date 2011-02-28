@@ -6,7 +6,8 @@ describe "SugarHigh::File" do
   let(:non_empty_file)  { fixture_file 'non-empty.txt'} 
   let(:class_file)      { fixture_file 'class_file.rb'} 
   let(:replace_file)    { fixture_file 'file.txt' }
-  let(:file_to_delete)    { fixture_file 'file_to_delete.txt' }
+  let(:file_to_delete)  { fixture_file 'file_to_delete.txt' }
+  let(:routes_file)     { fixture_file 'routes_file.rb' }  
 
   after do
     File.overwrite class_file do
@@ -291,6 +292,15 @@ end}
       puts File.read(class_file)
       File.read(class_file).should match /end\s+# Hello\s+end/
       File.remove_content_from class_file, :content => '  # Hello'
+    end    
+
+    it "should insert devise routes statement as first route statement" do
+      File.insert_into routes_file, :after => 'routes.draw do' do
+        'devise :users'
+      end
+      puts File.read(routes_file)
+      File.read(routes_file).should match /routes.draw\s+do\s+devise :users/
+      File.remove_content_from routes_file, :content => 'devise :users'
     end    
   end 
 end

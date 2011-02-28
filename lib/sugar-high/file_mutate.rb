@@ -135,22 +135,28 @@ class File
       else
         [ :after, options[:after] ]
     end 
-    
 
     marker = Insert.get_marker marker
-
-    return nil if !(File.new(file.path).read =~ /#{Regexp.escape(marker.to_s)}/)
+    marker_found = (File.new(file.path).read =~ /#{marker}/)
+    return nil if !marker_found
     
     Mutate.mutate_file file.path, marker, place do
        content
     end
   end   
 
+  module EscapedString
+    def escaped?
+      true
+    end
+  end
+
   module Insert
    def self.get_marker marker
+     return marker if marker.respond_to?(:escaped?) && marker.escaped?
      marker = case marker
      when String
-       Regexp.escape(marker)
+       Regexp.escape(marker).extend(EscapedString)
      when Regexp
        marker.source  
      end
@@ -179,8 +185,12 @@ class File
        File.open(file, 'wb') { |file| file.write(content) }         
        return
      end
-                 
-     replace_in_file file, /(#{Regexp.escape(marker.to_s)})/mi do |match|
+
+     marker = Insert.get_marker marker
+     marker_found = (File.new(file.path).read =~ /#{marker}/)
+     return nil if !marker_found
+     
+     replace_in_file file, /(#{marker})/mi do |match|
        place == :after ? "#{match}\n  #{yield}" : "#{yield}\n  #{match}"         
      end
    end  
