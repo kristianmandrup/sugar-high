@@ -2,6 +2,7 @@ class NilClass
   def blank?
     true
   end
+
   alias_method :wblank?, :blank?
   alias_method :empty?, :blank?
 
@@ -11,12 +12,15 @@ class NilClass
 end
 
 class String
-  def blank?
-    self.empty?
-  end
-
   def wblank?
-    self.strip.blank?
+    self.strip == ''
+  end
+  
+  if !defined? ::Rails  
+    def blank?
+      self.strip == ''
+    end
   end
 end  
+
 
