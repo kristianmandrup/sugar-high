@@ -1,6 +1,6 @@
 # Sugar high!
 
-Named in honor of the bailouts after 2008 crisis which led to a temporary 'sugar-high' in the markets. Inspired by the 'zucker' project.
+Inspired by the 'zucker' project.
 
 ## Install
 

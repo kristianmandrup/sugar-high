@@ -76,6 +76,11 @@ class String
   def valid_file_command?
     self.to_sym.valid_file_command?
   end
+  
+  def new_file
+    return File.new(self) if File.exist?(self)
+    File.open(self, 'w')    
+  end
 end
 
 class Symbol

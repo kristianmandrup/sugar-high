@@ -123,6 +123,21 @@ describe "SugarHigh" do
         Dir.glob(expr).file_names('txt').should include('empty', 'non-empty')
       end
     end
-  end  
+  end 
+  
+  describe "String" do
+    describe '#new_file' do 
+      let(:replace_file)    { fixture_file 'file.txt' }        
+
+      after :each do
+        File.delete replace_file if File.file?(replace_file)
+      end    
+           
+      it "should return all file names of an array of paths to files" do
+        replace_file.new_file
+        File.exist?(replace_file).should be_true        
+      end
+    end
+  end    
 end
     
