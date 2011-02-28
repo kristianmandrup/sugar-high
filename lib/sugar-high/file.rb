@@ -76,10 +76,23 @@ class String
   def valid_file_command?
     self.to_sym.valid_file_command?
   end
+
+  def file
+    return File.new(self) if File.file?(self)
+    raise "No file found at #{self}"
+  end
+
+  def dir
+    return Directory.new(self) if File.directory?(self)
+    raise "No file found at #{self}"
+  end
   
   def new_file
-    return File.new(self) if File.exist?(self)
-    File.open(self, 'w')    
+    begin 
+      file
+    rescue
+      File.open(self, 'w')    
+    end
   end
 end
 

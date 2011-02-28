@@ -112,7 +112,7 @@ describe "SugarHigh" do
   
   describe "Array" do
     describe '#file_names' do 
-      let(:replace_file)    { fixture_file 'file.txt' }        
+      let(:replace_file)    { fixture_file 'file.txt' }
     
       before :each do
         File.delete replace_file if File.file?(replace_file)
@@ -127,17 +127,26 @@ describe "SugarHigh" do
   
   describe "String" do
     describe '#new_file' do 
-      let(:replace_file)    { fixture_file 'file.txt' }        
-
-      after :each do
-        File.delete replace_file if File.file?(replace_file)
-      end    
+      let(:class_file)    { fixture_file 'class_file.txt' }
            
-      it "should return all file names of an array of paths to files" do
-        replace_file.new_file
-        File.exist?(replace_file).should be_true        
+      it "should get the existing file" do
+        class_file.new_file.path.should =~ /class_file/
       end
     end
-  end    
+    
+    describe '#file' do 
+      let(:class_file)    { fixture_file 'class_file.txt' }
+           
+      it "should get the file" do
+        class_file.file.path.should =~ /class_file/
+      end
+    end
+
+    describe '#dir' do            
+      it "should get the dir" do
+        fixtures_dir.path.dir.path.should =~ /fixtures/
+      end
+    end
+  end
 end
     
