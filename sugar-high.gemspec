@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.3.7"
+  s.version = "0.3.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -44,6 +44,7 @@ Gem::Specification.new do |s|
     "lib/sugar-high/string.rb",
     "sandbox/test_routes_mutate.rb",
     "spec/fixtures/class_file.rb",
+    "spec/fixtures/class_file.txt",
     "spec/fixtures/empty.txt",
     "spec/fixtures/non-empty.txt",
     "spec/fixtures/routes_file.rb",
@@ -67,7 +68,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage = %q{http://github.com/kristianmandrup/sugar-high}
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.2}
+  s.rubygems_version = %q{1.5.3}
   s.summary = %q{Ruby convenience sugar packs!}
   s.test_files = [
     "spec/fixtures/class_file.rb",
