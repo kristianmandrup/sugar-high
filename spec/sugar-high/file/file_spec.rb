@@ -144,7 +144,10 @@ describe "SugarHigh" do
 
     describe '#dir' do            
       it "should get the dir" do
-        fixtures_dir.path.dir.path.should =~ /fixtures/
+        fix_path = fixtures_dir.path
+        # puts fix_path
+        # puts fix_path.dir
+        fix_path.dir.path.should =~ /fixtures/
       end
     end
   end

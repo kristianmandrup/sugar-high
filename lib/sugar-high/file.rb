@@ -78,12 +78,12 @@ class String
   end
 
   def file
-    return File.new(self) if File.file?(self)
+    return ::File.new(self) if ::File.file?(self)
     raise "No file found at #{self}"
   end
 
   def dir
-    return Directory.new(self) if File.directory?(self)
+    return ::Dir.new(self) if ::File.directory?(self)
     raise "No file found at #{self}"
   end
   
