@@ -140,9 +140,10 @@ class File
     marker_found = (File.new(file.path).read =~ /#{marker}/)
     return nil if !marker_found
     
-    Mutate.mutate_file file.path, marker, place do
+    res = Mutate.mutate_file file.path, marker, place do
        content
     end
+    res
   end   
 
   module EscapedString
@@ -155,11 +156,11 @@ class File
    def self.get_marker marker
      return marker if marker.respond_to?(:escaped?) && marker.escaped?
      marker = case marker
+     when Regexp
+       marker
      when String
        Regexp.escape(marker).extend(EscapedString)
-     when Regexp
-       marker.source  
-     end
+     end       
    end
 
    def self.content options = {}, *args, &block
@@ -187,12 +188,14 @@ class File
      end
 
      marker = Insert.get_marker marker
+
      marker_found = (File.new(file.path).read =~ /#{marker}/)
      return nil if !marker_found
      
      replace_in_file file, /(#{marker})/mi do |match|
        place == :after ? "#{match}\n  #{yield}" : "#{yield}\n  #{match}"         
      end
+     true
    end  
 
    def self.replace_in_file(path, regexp, *args, &block)

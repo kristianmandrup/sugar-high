@@ -1,6 +1,10 @@
 require "active_support/inflector"
 
 class Object
+  def kinda_file?
+    any_kind_of?(File, Dir)
+  end
+
   def any_kind_of? *kinds
     kinds.all_kinds.each do |kind| 
       return true if self.kind_of? kind        
