@@ -1,24 +1,34 @@
-class NilClass
+class NilClass #:nodoc:
   def blank?
     true
   end
-
-  alias_method :wblank?, :blank?
   alias_method :empty?, :blank?
+end
 
-  def any?
+class FalseClass #:nodoc:
+  def blank?
+    true
+  end
+end
+
+class TrueClass #:nodoc:
+  def blank?
     false
   end
 end
 
+class Array #:nodoc:
+  alias_method :blank?, :empty?
+end
+
+class Hash #:nodoc:
+  alias_method :blank?, :empty?
+end
+
 class String
-  def wblank?
-    self.strip == ''
-  end
-  
-  if !defined? ::Rails  
+  if !"".respond_to? :blank
     def blank?
-      self.strip == ''
+      self !~ /\S/
     end
   end
 end  
