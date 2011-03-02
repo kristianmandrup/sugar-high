@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2011-03-01}
+  s.date = %q{2011-03-02}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -42,29 +42,6 @@ Gem::Specification.new do |s|
     "lib/sugar-high/rspec/configure.rb",
     "lib/sugar-high/rspec/matchers/have_aliases.rb",
     "lib/sugar-high/string.rb",
-    "sandbox/test_routes_mutate.rb",
-    "spec/fixtures/application_file.rb",
-    "spec/fixtures/class_file.rb",
-    "spec/fixtures/class_file.txt",
-    "spec/fixtures/empty.txt",
-    "spec/fixtures/non-empty.txt",
-    "spec/fixtures/routes_file.rb",
-    "spec/fixtures/search_file.txt",
-    "spec/spec_helper.rb",
-    "spec/sugar-high/alias_spec.rb",
-    "spec/sugar-high/arguments_spec.rb",
-    "spec/sugar-high/array_spec.rb",
-    "spec/sugar-high/blank_spec.rb",
-    "spec/sugar-high/file/file_mutate_spec.rb",
-    "spec/sugar-high/file/file_spec.rb",
-    "spec/sugar-high/hash_spec.rb",
-    "spec/sugar-high/includes_spec.rb",
-    "spec/sugar-high/kind_of_spec.rb",
-    "spec/sugar-high/methods_spec.rb",
-    "spec/sugar-high/module_spec.rb",
-    "spec/sugar-high/path_spec.rb",
-    "spec/sugar-high/regexp_spec.rb",
-    "spec/sugar-high/string_spec.rb",
     "sugar-high.gemspec"
   ]
   s.homepage = %q{http://github.com/kristianmandrup/sugar-high}
@@ -97,17 +74,11 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, [">= 2.4.1"])
-      s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_runtime_dependency(%q<mocha>, [">= 0.9.8"])
     else
       s.add_dependency(%q<rspec>, [">= 2.4.1"])
-      s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-      s.add_dependency(%q<mocha>, [">= 0.9.8"])
     end
   else
     s.add_dependency(%q<rspec>, [">= 2.4.1"])
-    s.add_dependency(%q<require_all>, ["~> 1.2.0"])
-    s.add_dependency(%q<mocha>, [">= 0.9.8"])
   end
 end
 
