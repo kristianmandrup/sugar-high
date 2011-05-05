@@ -12,6 +12,13 @@ class Object
     false
   end
 
+  def not_kind_of? *kinds
+    kinds.all_kinds.each do |kind| 
+      return false if self.kind_of? kind        
+    end
+    true
+  end
+
   def kind_of_label?
     self.any_kind_of? String, Symbol          
   end
