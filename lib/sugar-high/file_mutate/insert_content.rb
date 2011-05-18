@@ -33,8 +33,7 @@ class File
         [ :after, options[:after] ]
     end 
 
-    marker_found = file.has_content?(marker)
-    return nil if !marker_found
+    return nil if !file.has_content?(marker)
 
     # do mutation
     res = file.mutate marker, place do

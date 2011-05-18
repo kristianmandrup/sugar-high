@@ -6,7 +6,13 @@ describe "Overwrite file" do
   let(:non_empty_file)  { fixture_file 'non-empty.txt' }
   let(:content_file)    { fixture_file 'content_file.txt' }
 
-  describe 'File #overwrite class method'
+  before :each do
+    File.overwrite(content_file) do
+      'Goodbye'
+    end
+  end
+
+  describe 'File #overwrite class method' do
     describe '#overwrite with block arg' do
       context 'empty file' do 
         let (:content) { 'Overwritten!!!' }
@@ -14,13 +20,16 @@ describe "Overwrite file" do
         it 'should overwrite empty file' do      
           File.overwrite content_file do
             content
-          end
-          File.has_content?(content).should be_true
-          File.delete! content_file
+          end                        
+          cf = File.new(content_file)
+          cf.has_content?(content).should be_true
+          cf.delete!
         end
       end
     
       context 'non-empty file' do     
+        let (:content) { 'Overwritten!!!' }
+        
         it 'should overwrite file content with new content, erasing the old' do
           File.overwrite content_file do
             content
@@ -30,9 +39,10 @@ describe "Overwrite file" do
           File.overwrite content_file do
             new_content        
           end
-
-          content_file.has_content?(content).should be_false
-          content_file.has_content?(new_content).should be_true      
+          
+          cf = File.new(content_file)
+          cf.has_content?(content).should be_false
+          cf.has_content?(new_content).should be_true      
         end
       end
     end
@@ -40,25 +50,28 @@ describe "Overwrite file" do
     describe '#overwrite! (instance)' do
       let (:content) { 'Overwritten!!!' }
   
-      describe '#overwrite with block argument'
+      describe '#overwrite with block argument' do
         it 'should overwrite empty file' do      
-          content_file.overwrite do
+          cf = File.new(content_file)
+          cf.overwrite do
             content
           end
-          content_file.has_content?(content).should be_true
+          cf.has_content?(content).should be_true
           File.delete! content_file
         end
       end
 
-      describe '#overwrite using :with option arg'
+      describe '#overwrite using :with option arg' do
         it 'should overwrite file content with new content, erasing the old' do
-          content_file.overwrite :with => content
+          cf = File.new(content_file)
+                    
+          cf.overwrite :with => content
 
           new_content = "New content"
-          content_file.overwrite :with => new_content
+          cf.overwrite :with => new_content
 
-          content_file.has_content?(content).should be_false
-          content_file.has_content?(new_content).should be_true
+          cf.has_content?(content).should be_false
+          cf.has_content?(new_content).should be_true
         end
       end
     end

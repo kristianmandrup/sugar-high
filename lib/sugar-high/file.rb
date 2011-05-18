@@ -17,7 +17,8 @@ class File
   end   
 
   def self.has_content? file_name, content_matcher, &block
-    File.new(file_name).has_content? content_matcher, &block  
+    file = get_file file_name
+    file.has_content? content_matcher, &block  
   end
 
   def has_content? content_matcher = nil, &block  
@@ -27,7 +28,8 @@ class File
     rescue
       raise ArgumentError, "Content match must be specified as either a String or Regexp"
     end
-    !(self.read =~ content_matcher).nil?
+    matched = self.read_content =~ content_matcher
+    !(matched).nil?
   end
 
   def read_content options = {}, &block

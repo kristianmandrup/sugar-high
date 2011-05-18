@@ -9,12 +9,12 @@ class File
     def self.mutate_file file, marker, place, &block
      raise ArgumentError, "You must define a replacement marker for a :before, :before_last or :after key" if !marker 
 
-     file = get_file(file_name)
+     file = File.get_file(file)
 
      if place == :before_last
        content = file.read
        content = content.insert_before_last yield, marker
-       f.overwrite content
+       file.overwrite content
        return
      end
 
@@ -28,22 +28,33 @@ class File
     end  
 
     def self.replace_in_file(file, regexp, *args, &block)
-     file = get_file(file_name)
+     file = File.get_file(file)
      content = file.read.gsub(regexp, *args, &block)
-     f.overwrite content
+     file.overwrite content
     end    
   end
   
   protected
 
   def self.get_file file_name
-    file = case file_name
+    case file_name
     when PathString, String 
       File.new file_name
     when File
       file_name
     else
       raise ArgumentError, "Could not be converted to a File object: #{file_name}"
+    end
+  end  
+
+  def self.get_filepath file
+    case file
+    when PathString, String 
+      file
+    when File
+      file.path
+    else
+      raise ArgumentError, "Could not be converted to a file path: #{file_name}"
     end
   end  
 end
