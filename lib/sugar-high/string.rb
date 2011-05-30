@@ -1,4 +1,9 @@
 class String
+  # remove prefixed '-' signs, then allow any letter, number, underscore '_' or dash '-'
+  def alpha_numeric
+    self.gsub(/^\-+/, '').gsub(/[^0-9a-zA-Z_\-]+/i, '')
+  end
+  
   def insert_before_last str, marker = 'end'
     res = []
     found = false

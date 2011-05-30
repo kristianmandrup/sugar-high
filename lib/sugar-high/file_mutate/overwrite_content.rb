@@ -1,11 +1,15 @@
-class File  
-  def overwrite content=nil, &block           
-    File.overwrite self.path, content, &block
-  end
+module SugarHigh
+  module FileMutate
+    module Overwrite
+      def overwrite content=nil, &block           
+        File.overwrite self.path, content, &block
+      end
 
-  def self.overwrite file, content=nil, &block
-    File.open(get_filepath(file).path, 'w') do |f|
-      f.puts content ||= yield
+      def self.overwrite file, content=nil, &block
+        File.open(get_filepath(file).path, 'w') do |f|
+          f.puts content ||= yield
+        end
+      end
     end
   end
 end
