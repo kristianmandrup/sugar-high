@@ -8,6 +8,7 @@ require 'sugar-high/file_ext'
 
 class File   
   include SugarHigh::FileExt
+  extend  SugarHigh::FileExt::ClassMethods    
 end
 
 class Symbol

@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'sugar-high/file_mutate'
+File.mutate_ext :all
 
 describe "Overwrite file" do
   let(:empty_file)      { fixture_file 'empty.txt' }

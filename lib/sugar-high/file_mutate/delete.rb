@@ -22,7 +22,7 @@ module SugarHigh
       alias_method :delete_file!, :delete!
 
       def mutate marker, place, &block
-        Mutate.mutate_file self.path, marker, place, &block
+        File.mutate_file self.path, marker, place, &block
       end
     end      
   end

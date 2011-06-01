@@ -1,6 +1,6 @@
 module SugarHigh
   module FileMutate
-    module Append
+    module AppendContent
       def append content=nil, &block
         File.append self.path, content, &block
       end

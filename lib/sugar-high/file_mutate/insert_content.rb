@@ -1,6 +1,6 @@
 module SugarHigh
   module FileMutate
-    module Insert
+    module InsertContent
       def insert *args, &block
         File.insert_into self.path, *args, &block
       end
