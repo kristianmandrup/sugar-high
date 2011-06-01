@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.4.0"
+  s.version = "0.4.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Kristian Mandrup"]
-  s.date = %q{2011-03-02}
+  s.authors = [%q{Kristian Mandrup}]
+  s.date = %q{2011-06-01}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -28,8 +28,18 @@ Gem::Specification.new do |s|
     "lib/sugar-high/arguments.rb",
     "lib/sugar-high/array.rb",
     "lib/sugar-high/blank.rb",
+    "lib/sugar-high/class_ext.rb",
+    "lib/sugar-high/enumerable.rb",
     "lib/sugar-high/file.rb",
+    "lib/sugar-high/file_ext.rb",
     "lib/sugar-high/file_mutate.rb",
+    "lib/sugar-high/file_mutate/append_content.rb",
+    "lib/sugar-high/file_mutate/delete.rb",
+    "lib/sugar-high/file_mutate/insert_content.rb",
+    "lib/sugar-high/file_mutate/mutate.rb",
+    "lib/sugar-high/file_mutate/overwrite_content.rb",
+    "lib/sugar-high/file_mutate/remove_content.rb",
+    "lib/sugar-high/file_mutate/replace_content.rb",
     "lib/sugar-high/hash.rb",
     "lib/sugar-high/includes.rb",
     "lib/sugar-high/kind_of.rb",
@@ -46,7 +56,9 @@ Gem::Specification.new do |s|
     "spec/fixtures/application_file.rb",
     "spec/fixtures/class_file.rb",
     "spec/fixtures/class_file.txt",
+    "spec/fixtures/content_file.txt",
     "spec/fixtures/empty.txt",
+    "spec/fixtures/file.txt",
     "spec/fixtures/non-empty.txt",
     "spec/fixtures/routes_file.rb",
     "spec/fixtures/search_file.txt",
@@ -55,8 +67,15 @@ Gem::Specification.new do |s|
     "spec/sugar-high/arguments_spec.rb",
     "spec/sugar-high/array_spec.rb",
     "spec/sugar-high/blank_spec.rb",
-    "spec/sugar-high/file/file_mutate_spec.rb",
-    "spec/sugar-high/file/file_spec.rb",
+    "spec/sugar-high/file/file_dsl_spec.rb",
+    "spec/sugar-high/file_mutate/append_content_spec.rb",
+    "spec/sugar-high/file_mutate/delete_spec.rb",
+    "spec/sugar-high/file_mutate/insert_before_last_spec.rb",
+    "spec/sugar-high/file_mutate/insert_content_spec.rb",
+    "spec/sugar-high/file_mutate/overwrite_content_spec.rb",
+    "spec/sugar-high/file_mutate/remove_content_spec.rb",
+    "spec/sugar-high/file_mutate/replace_content_spec.rb",
+    "spec/sugar-high/file_spec.rb",
     "spec/sugar-high/hash_spec.rb",
     "spec/sugar-high/includes_spec.rb",
     "spec/sugar-high/kind_of_spec.rb",
@@ -68,29 +87,9 @@ Gem::Specification.new do |s|
     "sugar-high.gemspec"
   ]
   s.homepage = %q{http://github.com/kristianmandrup/sugar-high}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.3}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.3}
   s.summary = %q{Ruby convenience sugar packs!}
-  s.test_files = [
-    "spec/fixtures/application_file.rb",
-    "spec/fixtures/class_file.rb",
-    "spec/fixtures/routes_file.rb",
-    "spec/spec_helper.rb",
-    "spec/sugar-high/alias_spec.rb",
-    "spec/sugar-high/arguments_spec.rb",
-    "spec/sugar-high/array_spec.rb",
-    "spec/sugar-high/blank_spec.rb",
-    "spec/sugar-high/file/file_mutate_spec.rb",
-    "spec/sugar-high/file/file_spec.rb",
-    "spec/sugar-high/hash_spec.rb",
-    "spec/sugar-high/includes_spec.rb",
-    "spec/sugar-high/kind_of_spec.rb",
-    "spec/sugar-high/methods_spec.rb",
-    "spec/sugar-high/module_spec.rb",
-    "spec/sugar-high/path_spec.rb",
-    "spec/sugar-high/regexp_spec.rb",
-    "spec/sugar-high/string_spec.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
