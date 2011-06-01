@@ -1,24 +1,54 @@
 require 'sugar-high/kind_of'
+require 'sugar-high/enumerable'
 require 'sugar-high/path'
 
 class Array    
-  def to_symbols option=nil
-    res = self.flatten
-    res.map!{|a| a.kind_of?(Fixnum) ? "_#{a}" : a} if option == :num
-    res.select_labels.map(&:to_s).map(&:to_sym)
+  def to_symbols
+    self.flatten.select_labels.map{|a| a.to_s.to_sym }
   end  
 
+  def to_symbols!
+    self.flatten!.select_labels!.map!{|a| a.to_s.to_sym }
+  end
+
+  def to_symbols_num
+    self.flatten.map{|a| a.kind_of?(Fixnum) ? "_#{a}" : a}.map{|a| a.to_s.to_sym }
+  end
+
+  def to_symbols_num!
+    self.flatten!.map!{|a| a.kind_of?(Fixnum) ? "_#{a}" : a}..map!{|a| a.to_s.to_sym }
+  end
+
+  def to_symbols_uniq
+    to_symbols.uniq
+  end
+
+  def to_symbols_uniq!
+    to_symbols!.uniq!
+  end
+
   def to_strings
-    self.flatten.select_labels.map(&:to_s)
+    self.flatten!.select_labels!.map!(&:to_s)
+  end  
+
+  def to_strings!
+    self.flatten.select_labels!.map!(&:to_s)
   end  
 
   def to_filenames
     self.to_strings.map(&:underscore)
   end  
 
+  def to_filenames!
+    self.to_strings!.map!(&:underscore)
+  end  
 
   def to_paths
     self.map(&:path)
+  end
+
+  def to_paths!
+    self.map!(&:path)
   end
 
   def file_join
@@ -29,14 +59,35 @@ class Array
     self.map{|fp| fp.path.to_file }
     self.extend FilesArray    
   end
+
+  def to_files!
+    self.map!{|fp| fp.path.to_file }
+    self.extend FilesArray    
+  end
   
   def none?
     self.flatten.compact.empty?
   end 
   
- def flat_uniq
+  def flat_uniq
    self.flatten.compact.uniq
- end 
+  end 
+
+  def flat_uniq!
+   self.flatten!.compact!.uniq!
+  end 
+
+  def extract(sym)
+   map { |e| e.send(sym) }
+  end
+
+  def sum
+   inject( 0 ) { |sum,x| sum + x }
+  end
+
+  def mean
+   (size > 0) ? sum.to_f / size : 0
+  end 
 end
 
 module FilesArray

@@ -16,13 +16,14 @@ module SugarHigh
         alias_method :delete_file!, :delete!
       end
       
-    def delete!
-      File.delete(self.path)
-    end
-    alias_method :delete_file!, :delete!
+      def delete!
+        File.delete(self.path)
+      end
+      alias_method :delete_file!, :delete!
 
-    def mutate marker, place, &block
-      Mutate.mutate_file self.path, marker, place, &block
-    end
+      def mutate marker, place, &block
+        Mutate.mutate_file self.path, marker, place, &block
+      end
+    end      
   end
 end
