@@ -4,11 +4,16 @@ require 'sugar-high/path'
 
 class Array    
   def to_symbols
-    self.flatten.select_labels.map{|a| a.to_s.to_sym }
+    res = self.flatten.select_labels
+    res = res.map{|a| a.to_s.to_sym } if res
+    res || []
   end  
 
   def to_symbols!
-    self.flatten!.select_labels!.map!{|a| a.to_s.to_sym }
+   self.flatten!
+   self.select_labels!
+   self.map!{|a| a.to_s.to_sym }
+   self
   end
 
   def to_symbols_num
@@ -16,7 +21,8 @@ class Array
   end
 
   def to_symbols_num!
-    self.flatten!.map!{|a| a.kind_of?(Fixnum) ? "_#{a}" : a}..map!{|a| a.to_s.to_sym }
+    self.flatten!
+    self.map!{|a| a.kind_of?(Fixnum) ? "_#{a}" : a}.map!{|a| a.to_s.to_sym }
   end
 
   def to_symbols_uniq
@@ -24,15 +30,16 @@ class Array
   end
 
   def to_symbols_uniq!
-    to_symbols!.uniq!
+    self.to_symbols!.uniq!
   end
 
-  def to_strings
-    self.flatten!.select_labels!.map!(&:to_s)
+  def to_strings!
+    self.flatten!
+    self.select_labels!.map!(&:to_s)
   end  
 
-  def to_strings!
-    self.flatten.select_labels!.map!(&:to_s)
+  def to_strings
+    self.flatten.select_labels.map(&:to_s)
   end  
 
   def to_filenames
@@ -49,6 +56,7 @@ class Array
 
   def to_paths!
     self.map!(&:path)
+    self
   end
 
   def file_join
@@ -74,7 +82,10 @@ class Array
   end 
 
   def flat_uniq!
-   self.flatten!.compact!.uniq!
+   self.flatten!
+   self.compact!
+   self.uniq!
+   self
   end 
 
   def extract(sym)

@@ -5,6 +5,10 @@ describe "SugarHigh" do
   describe "Array ext" do
 
     describe '#to_symbols' do    
+      it "should translate invalid array into empty array" do
+        [1, nil].to_symbols.should == []
+      end
+
       it "should translate nested array of numbers and strings into symbols only array, excluding numbers" do
         [1, 'blip', [3, "hello"]].to_symbols.should == [:blip, :hello]
       end
@@ -23,6 +27,11 @@ describe "SugarHigh" do
         x = [1, 'hello', 'blip', [3, "hello"]].to_symbols!
         x.should include :hello, :blip
       end
+      
+      it "should translate invalid array into empty array" do
+        x = [1, nil].to_symbols!
+        x.should == []
+      end      
     end
     
     describe '#to_strings' do    
@@ -31,7 +40,12 @@ describe "SugarHigh" do
       end      
     end    
 
-    describe '#to_strings!' do    
+    describe '#to_strings' do    
+      it "should translate invalid array into empty array" do
+        x = [1, nil].to_strings!
+        x.should == []
+      end      
+
       it "should translate nested array of numbers and strings into symbols only array, excluding numbers" do
         x = [1, 'blip', [3, "hello"]].to_strings!
         x.should == ['blip', 'hello']
@@ -49,6 +63,11 @@ describe "SugarHigh" do
     end    
 
     describe '#flat_uniq!' do    
+      it "should translate invalid array into empty array" do
+        x = [1, nil].to_strings!
+        x.should == []
+      end      
+
       it "should flatten array, remove nils and make unique" do
         x = [1, 'blip', ['blip', nil, 'c'], nil]
         x.flat_uniq!

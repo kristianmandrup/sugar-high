@@ -13,6 +13,7 @@ module Enumerable
 
   def select_kinds_of! *kinds
     select!{|a| a.any_kind_of? *kinds }
+    self
   end
 
   def select_labels
@@ -20,7 +21,8 @@ module Enumerable
   end
 
   def select_labels!
-    select! {|a| a.kind_of_label? }
+    select!{|a| a.kind_of_label? }
+    self
   end
 
 
@@ -30,18 +32,21 @@ module Enumerable
 
   def select_symbols!
     select_only! :symbol
+    self
   end
 
   def select_uniq_symbols!
     select_only!(:symbol).uniq!
+    self
   end
 
   def select_strings
     select_only :string
   end
 
-  def select_strings
-    select_only :string
+  def select_strings!
+    select_only! :string
+    self
   end
 
   def select_only type    
@@ -52,6 +57,7 @@ module Enumerable
   def select_only! type    
     const = type.kind_of_label? ? "#{type.to_s.camelize}".constantize : type
     select!{|a| a.kind_of? const}
+    self
   end
   
   def all_kinds
