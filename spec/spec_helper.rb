@@ -1,4 +1,4 @@
-require 'rspec/core'
+require 'rspec'
 require 'sugar-high'
 
 RSpec.configure do |config|
