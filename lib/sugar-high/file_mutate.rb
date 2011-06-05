@@ -12,7 +12,6 @@ require 'sugar-high/file_mutate/append_content'
 require 'sugar-high/file_mutate/remove_content'
 require 'sugar-high/file_mutate/replace_content'
 require 'sugar-high/file_mutate/insert_content'
-require 'sugar-high/file_mutate/extras'
 
 require 'sugar-high/class_ext'
 require 'active_support/inflector'

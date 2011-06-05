@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'sugar-high/file'
 require 'sugar-high/file_mutate'
 File.mutate_ext :all
 

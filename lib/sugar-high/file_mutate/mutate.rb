@@ -28,31 +28,30 @@ module SugarHigh
          content = file.read.gsub(regexp, *args, &block)
          file.overwrite content
         end    
-      end
-  
-      protected
 
-      def get_file file_name
-        case file_name
-        when PathString, String 
-          File.new file_name
-        when File
-          file_name
-        else
-          raise ArgumentError, "Could not be converted to a File object: #{file_name}"
-        end
-      end  
 
-      def get_filepath file
-        case file
-        when PathString, String 
-          file
-        when File
-          file.path
-        else
-          raise ArgumentError, "Could not be converted to a file path: #{file_name}"
+        def get_file file_name
+          case file_name
+          when PathString, String 
+            File.new file_name
+          when File
+            file_name
+          else
+            raise ArgumentError, "Could not be converted to a File object: #{file_name}"
+          end
+        end  
+
+        def get_filepath file
+          case file
+          when PathString, String 
+            file
+          when File
+            file.path
+          else
+            raise ArgumentError, "Could not be converted to a file path: #{file_name}"
+          end
         end
-      end
+      end 
     end  
   end
 end
