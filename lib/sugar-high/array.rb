@@ -91,7 +91,9 @@ class Array
   def extract(sym)
    map { |e| e.send(sym) }
   end
+end
 
+module MathArray
   def sum
    inject( 0 ) { |sum,x| sum + x }
   end
@@ -99,7 +101,7 @@ class Array
   def mean
    (size > 0) ? sum.to_f / size : 0
   end 
-end
+end  
 
 module FilesArray
   def delete_all!

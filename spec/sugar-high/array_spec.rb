@@ -77,19 +77,19 @@ describe "SugarHigh" do
 
     describe '#sum' do    
       it "should add elements in array" do
-        [1, 2, 3].sum.should == 6
+        [1, 2, 3].extend(MathArray).sum.should == 6
       end      
     end
 
     describe '#mean' do    
       it "should find mean of elements in array" do
-        [1, 2, 3].mean.should == 2
+        [1, 2, 3].extend(MathArray).mean.should == 2
       end      
     end
 
     describe '#extract' do    
       it "should call method on each element in array" do
-        ["a", "ab", "abc"].extract(:size).mean.should == 2
+        ["a", "ab", "abc"].extract(:size).extend(MathArray).mean.should == 2
       end      
     end    
 
