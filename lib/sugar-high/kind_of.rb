@@ -1,4 +1,5 @@
 require "active_support/inflector"
+require "sugar-high/enumerable"
 
 class Object
   def kinda_file?
