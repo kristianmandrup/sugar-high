@@ -2,7 +2,13 @@ require 'sugar-high/kind_of'
 require 'sugar-high/enumerable'
 require 'sugar-high/path'
 
-class Array    
+class Array
+  def without(*values)
+     copy = self.dup
+     values.flatten.each { |value| copy.delete(value) }
+     copy
+  end
+      
   def to_symbols
     res = self.flatten.select_labels
     res = res.map{|a| a.to_s.to_sym } if res
