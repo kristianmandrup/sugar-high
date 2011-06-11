@@ -12,7 +12,14 @@ class Class
   end
 end
 
-module ClassExt  
+module ClassExt
+  def get_module name
+    # Module.const_get(name)
+    name.to_s.constantize
+  rescue
+    nil
+  end
+    
   def is_class?(clazz)
     clazz.is_a?(Class) && (clazz.respond_to? :new)
   end
@@ -22,20 +29,20 @@ module ClassExt
   end
      
   def class_exists?(name)
-    is_class? Module.const_get(name)
-  rescue NameError
+    is_class? get_module(name)
+  rescue
     return false
   end  
 
   def module_exists?(name)
-    is_module? Module.const_get(name)
+    is_module? get_module(name)
   rescue NameError
     return false
   end  
   
   def try_class name
     return name if name.kind_of?(Class)
-    found = Module.const_get(name) if name.kind_of_label?
+    found = get_module(name) if name.kind_of_label?
     return found if found.is_a?(Class)
   rescue          
     false
@@ -43,7 +50,7 @@ module ClassExt
 
   def try_module name
     return name if name.kind_of?(Module)
-    found = Module.const_get(name) if name.kind_of_label?
+    found = get_module(name) if name.kind_of_label?
     return found if found.is_a?(Module)
   rescue          
     false
@@ -51,7 +58,7 @@ module ClassExt
 
   def try_module_only name
     return name if is_module?(name)
-    found = Module.const_get(name) if name.kind_of_label?
+    found = get_module(name) if name.kind_of_label?
     return found if is_module?(found)
   rescue          
     false

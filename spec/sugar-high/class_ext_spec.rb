@@ -9,7 +9,12 @@ class Hello
 end
 
 module GoodBye
+  module Alpha
+    module Beta
+    end
+  end
 end
+
 
 def trial
   @trial ||= Trial.new
@@ -25,7 +30,11 @@ describe ClassExt do
 
     it "should return module if found" do
       trial.try_module('GoodBye').should be_a(Module)
-      trial.try_module(:GoodBye).should be_a(Module)
+      trial.try_module(:GoodBye).should be_a(Module)       
+    end
+
+    it "should return namespaced module if found" do
+      trial.try_module('GoodBye::Alpha::Beta').should be_a(Module)
     end
 
     it "should return false if only class of that name is found" do
