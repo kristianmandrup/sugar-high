@@ -15,7 +15,7 @@ end
 module ClassExt
   def get_module name
     # Module.const_get(name)
-    name.to_s.constantize
+    name.to_s.camelize.constantize
   rescue
     nil
   end
@@ -77,7 +77,7 @@ module ClassExt
 
   def find_first_module *names
     modules = names.flatten.compact.uniq.inject([]) do |res, class_name|
-      found_class = try_class(class_name.to_s.camelize)
+      found_class = try_module(class_name.to_s.camelize)
       res << found_class if found_class
       res
     end
