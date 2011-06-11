@@ -86,4 +86,31 @@ describe ClassExt do
       trial.module_exists?('Hello').should be_false
     end    
   end
+
+  describe '#try_module_only' do
+    it 'should find module' do
+      trial.try_module_only('Hello').should be_false
+      trial.try_module_only('Goodbye').should be_true
+    end
+  end      
+
+  describe '#find_first_class' do
+    it 'should find first class' do
+      trial.find_first_class('GoodBye', 'Hello').should include(Hello)
+    end
+    
+    it 'should not find any module' do
+      lambda {trial.find_first_class('Good', 'Bye') }.should raise_error
+    end    
+  end
+
+  describe '#find_first_module' do
+    it 'should find first module' do
+      trial.find_first_module('GoodBye', 'Hello').should include(GoodBye)
+    end
+
+    it 'should not find any module' do
+      lambda {trial.find_first_module('Good', 'Bye') }.should raise_error
+    end
+  end  
 end
