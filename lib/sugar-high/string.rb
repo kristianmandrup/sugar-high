@@ -1,4 +1,11 @@
 class String
+  def concat *args
+    args.inject(self) do |res, arg| 
+      res << arg.to_s
+      res
+    end
+  end
+
   # remove prefixed '-' signs, then allow any letter, number, underscore '_' or dash '-'
   def alpha_numeric
     self.gsub(/^\-+/, '').gsub(/[^0-9a-zA-Z_\-]+/i, '')
