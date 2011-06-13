@@ -1,4 +1,8 @@
 class String
+  def trim
+    self.strip
+  end
+  
   def concat *args
     args.inject(self) do |res, arg| 
       res << arg.to_s
