@@ -51,6 +51,16 @@ module PathString
     ('../' * lv) + self
   end
 
+  def down lv
+    up_dir = Regexp.escape('../')
+    orig = self.clone
+    lv.times do
+      self.gsub! /^#{up_dir}/, ''
+      return self if self == orig
+    end
+    self
+  end
+
   def post_up lv
     self + ('/..' * lv)
   end
@@ -60,16 +70,6 @@ module PathString
     orig = self.clone
     lv.times do
       self.gsub! /#{up_dir}$/, ''
-      return self if self == orig
-    end
-    self
-  end
-
-  def down lv
-    up_dir = Regexp.escape('../')
-    orig = self.clone
-    lv.times do
-      self.gsub! /^#{up_dir}/, ''
       return self if self == orig
     end
     self

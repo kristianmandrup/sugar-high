@@ -18,3 +18,7 @@ module NumberDslExt
     self * 100
   end  
 end
+
+[Float, Numeric].each do |mod|
+  mod.send :include, NumberDslExt
+end

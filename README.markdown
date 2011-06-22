@@ -89,22 +89,40 @@ File object
 * select_only(type)    
 * select_only!(type)
 
-### Hash
-
-* hash_revert : Reverse keys and values
-
 ### File
 
 * self.blank? and blank? : Is file empty?
 * self.overwrite : overwrite file with new content (mode = 'w')
 * self.append : append to existing file with content or create new (mode = 'w+')
 
-String:
-* path : expand String with path operations :up and :down
+### File Mutate
+Adds all File mutation modules to the File class
 
-PathString:
-* up lv   : Go up some directory levels, prefixing with a number of '../'
-* down lv : Go down some directory levels, stripping off a number of prefixed '../'
+### File Mutation
+
+Various File Mutation modules that can be added to any module or class for some nice benefits. Useful for generators fx.
+
+Mutation modules within SugarHigh::FileMutate
+
+* AppendContent
+* Delete
+* InsertContent
+* OverwriteContent
+* RemoveContent
+* ReplaceContent
+
+To add all mutate modules to the File class, simply:
+
+<pre>File.mutate_ext :all</pre>
+
+Otherwise, simply specify which ones:
+
+<pre>File.mutate_ext :append_content, overwrite_content</pre>
+
+### Hash
+
+* hash_revert : Reverse keys and values
+* try_keys : return value of first key that is in Hash
 
 ### Includes
 
@@ -117,7 +135,7 @@ PathString:
 
 ### Metaclass
 
-* metaclass : Get the metaclass
+* metaclass : Get the metaclass, can be used to dynamically add class singleton methods!
 
 ### Methods
 
@@ -130,12 +148,85 @@ PathString:
 
 Create empty namespaces
 
-### Blank
+### Not
 
-* blank?  : Empty string? (works on nil)
-* wblank? : Blank including whitespace only? (works on nil)
-* empty?  : array and nil
-* any?    : array and nil
+* not
+
+Adds the _#not_ method to Object, so you can say fx: <code>if x.not.empty?</code>
+
+### Numeric
+
+module _NumericCheckExt_ 
+
+* is_numeric?(arg) - alias numeric?
+* check_numeric!(arg) - raises error if argument is not numeric
+
+module NumberDslExt added to all numeric classes (Float and Numeric)
+* thousand
+* hundred
+
+<pre>
+3.thousand + 2.hundred 
+  => 3200  
+</pre>
+
+### Path
+* String#path - extends String instance with PathString
+
+module PathString
+* to_file
+* to_dir
+* to_symlink
+
+<pre>
+"a/b/c".to_dir  
+"a/b/c/d.rb".to_file  
+</pre>
+
+File type existance
+* exists?
+* file?
+* dir?
+* symlink?
+
+Navigate dirs
+* up
+* down
+* post_up
+* post_down
+
+<pre>
+"a/b/c/d".up(2).should == "a/b"
+"a/b/".post_up(2).should == "a/b/../../"  
+"a/b/../".post_down(1).should == "a/b/"  
+</pre>
+
+### Properties
+
+<pre>
+class CruiseShip
+  extend Properties
+
+  property :direction
+  property :speed, is(0..300)
+end  
+
+ship = CruiseShip.new  
+ship.add_direction_listener(lambda {|x| puts "Oy... someone changed the direction to #{x}"})    
+ship.speed = 200
+ship.speed = 301 # outside valid range!
+</pre>
+
+### RegExp
+
+String, RegExp
+* to_regexp
+
+<pre>"a, b /c".to_regexp # escapes it for reg exp!</pre>
+
+MatchData
+* offset_after
+* offset_before
 
 ## RSpec 2 Matchers
 
