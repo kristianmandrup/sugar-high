@@ -10,16 +10,33 @@ Inspired by the 'zucker' project.
 
 See specs for example use
 
+## Update June 22, 2011
+
+file_mutate is now backwards compatible again in order nt to break gems such as cream et. al. that depend on auto inclusion of all File extensions into
+File object
+
 ## Sugar packs
 
 * alias
 * arguments
+* array
+* blank
+* class_ext
+* enumerable
 * file
+* file_mutate (backwards compatible)
+* file_mutation
+* includes
 * kind_of
+* math
 * metaclass
 * methods
 * module
-* string
+* not  
+* numeric
+* path
+* properties
+* reg_exp
            
 ### Alias
 
@@ -29,6 +46,48 @@ See specs for example use
 
 * args (Used in generator CLI testing)
 * last_option *args : Returns last argument if hash or empty hash otherwise
+* ...
+
+### Array
+
+* to_symbols
+* to_symbols_uniq
+* to_strings
+* flat_uniq
+* file_join
+* ...
+
+### Blank
+
+* blank?
+
+### Class Extension
+
+* is_class?
+* is_module?
+* class_exists?
+* module_exists?
+* try_class
+* try_module
+* try_module_only
+* find_first_class(*class_names)
+* find_first_module(*module_names)
+
+### Enumerable
+
+* only_kinds_of?(*modules)
+* only_labels?
+* select_kinds_of(*modules)
+* select_kinds_of!
+* select_labels
+* select_labels!
+* select_symbols
+* select_symbols!
+* select_uniq_symbols!
+* select_strings
+* select_strings!
+* select_only(type)    
+* select_only!(type)
 
 ### Hash
 
