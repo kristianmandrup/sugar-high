@@ -15,9 +15,37 @@ module GoodBye
   end
 end
 
+module First 
+  module ClassMethods
+    def class_method
+    end
+  end
+
+  module InstanceMethods
+    def instance_method
+    end
+  end
+end
+
+class Second
+  include_and_extend First
+end
 
 def trial
   @trial ||= Trial.new
+end
+
+describe Class do
+
+  describe "#include_and_extend" do
+    it "should include class methods" do
+      Second.should respond_to(:class_method)  
+    end
+
+    it "should include class methods" do
+      Second.new.should respond_to(:instance_method)
+    end
+  end
 end
 
 describe ClassExt do
