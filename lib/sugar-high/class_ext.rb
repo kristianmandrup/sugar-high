@@ -98,7 +98,7 @@ class Object
     # It is very useful for situations of having not load_paths built Rails or Gems way.
 
     args.each do |req_name|
-      send :autoload, req_name, "#{from}/#{req_name.to_s.downcase}"
+      send :autoload, req_name, "#{from}/#{req_name.to_s.underscore}"
     end
   end
 end

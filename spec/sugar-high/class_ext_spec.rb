@@ -43,7 +43,7 @@ describe Object do
     end
     it "should autoload modules from __FILE__'s dir if :from is omitted'" do
       require 'fixtures/autoload_modulez'
-      AutoloadModulez::Third.should respond_to(:test)
+      AutoloadModulez::ThirdOneHere.should respond_to(:test)
     end
   end
 end
