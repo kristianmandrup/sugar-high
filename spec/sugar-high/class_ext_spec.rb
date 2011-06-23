@@ -35,6 +35,15 @@ def trial
   @trial ||= Trial.new
 end
 
+describe Object do
+  describe "#autoload_modules" do
+    it "should autoload modules" do
+      require 'fixtures/autoload_modules'
+      AutoloadModules::Third.should respond_to(:test)
+    end
+  end
+end
+
 describe Class do
 
   describe "#include_and_extend" do
