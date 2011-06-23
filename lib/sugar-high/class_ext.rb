@@ -94,12 +94,11 @@ class Object
     options = args.extract_options!
     from = options[:from]
     
-    raise "Define load path like :from => '#{self.name.to_s.downcase}'" unless from
-    
     # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
     # It is very useful for situations of having not load_paths built Rails or Gems way.
 
     args.each do |req_name|
+      from = (from ? from : self.name.to_s.underscore)
       send :autoload, req_name, "#{from}/#{req_name.to_s.downcase}"
     end
   end

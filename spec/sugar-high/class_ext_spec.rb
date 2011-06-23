@@ -37,9 +37,13 @@ end
 
 describe Object do
   describe "#autoload_modules" do
-    it "should autoload modules" do
+    it "should autoload modules using :from => path" do
       require 'fixtures/autoload_modules'
       AutoloadModules::Third.should respond_to(:test)
+    end
+    it "should autoload modules from __FILE__'s dir if :from is omitted'" do
+      require 'fixtures/autoload_modulez'
+      AutoloadModulez::Third.should respond_to(:test)
     end
   end
 end
