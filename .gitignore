@@ -1,3 +1,4 @@
+Gemfile.lock
 ## MAC OS
 .DS_Store
 
@@ -19,3 +20,4 @@ rdoc
 pkg
 
 ## PROJECT::SPECIFIC
+

@@ -92,9 +92,7 @@ class Object
   def autoload_modules *args
 
     options = args.extract_options!
-    from = options[:from]
-    
-    raise "Define load path like :from => '#{self.name.to_s.downcase}'" unless from
+    from = options[:from] || self.name.to_s.underscore
     
     # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
     # It is very useful for situations of having not load_paths built Rails or Gems way.
