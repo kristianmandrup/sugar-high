@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.4.7"
+  s.version = "0.4.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
@@ -58,6 +58,10 @@ Gem::Specification.new do |s|
     "lib/sugar-high/string.rb",
     "sandbox/test_routes_mutate.rb",
     "spec/fixtures/application_file.rb",
+    "spec/fixtures/autoload_modules.rb",
+    "spec/fixtures/autoload_modules/first.rb",
+    "spec/fixtures/autoload_modules/second.rb",
+    "spec/fixtures/autoload_modules/third.rb",
     "spec/fixtures/class_file.rb",
     "spec/fixtures/class_file.txt",
     "spec/fixtures/content_file.txt",
