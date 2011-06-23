@@ -63,6 +63,7 @@ File object
 
 ### Class Extension
 
+* autoload_modules (by @stanislaw)
 * is_class?
 * is_module?
 * class_exists?
