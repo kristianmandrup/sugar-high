@@ -27,8 +27,12 @@ module First
   end
 end
 
-class Second
+module Second
   include_and_extend First
+end
+
+class Third
+  include_and_extend Second
 end
 
 def trial
@@ -55,15 +59,15 @@ describe Object do
   end
 end
 
-describe Class do
+describe Module do
 
   describe "#include_and_extend" do
     it "should include class methods" do
-      Second.should respond_to(:class_method)  
+      Third.should respond_to(:class_method)  
     end
 
     it "should include class methods" do
-      Second.new.should respond_to(:instance_method)
+      Third.new.should respond_to(:instance_method)
     end
   end
 end
