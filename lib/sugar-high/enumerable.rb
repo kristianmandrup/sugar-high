@@ -6,6 +6,10 @@ module Enumerable
   def only_labels?
     all?{|a| a.kind_of_label? }    
   end
+
+  def only_numbers?
+    all?{|a| a.kind_of_number? }    
+  end
   
   def select_kinds_of *kinds
     select{|a| a.any_kind_of? *kinds }
@@ -20,11 +24,19 @@ module Enumerable
     select{|a| a.kind_of_label? }
   end
 
+  def select_numbers
+    select{|a| a.is_a?(Numeric) }
+  end
+
+  def select_numbers!
+    select!{|a| a.is_a?(Numeric) }
+    self
+  end
+
   def select_labels!
     select!{|a| a.kind_of_label? }
     self
   end
-
 
   def select_symbols
     select_only :symbol

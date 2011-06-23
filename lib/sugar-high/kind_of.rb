@@ -21,11 +21,16 @@ class Object
   end
 
   def kind_of_label?
-    self.any_kind_of? String, Symbol          
+    self.any_kind_of? String, Symbol
   end
 
+  def kind_of_number?
+    self.any_kind_of? Numeric
+  end
+
+
   def kind_of_symbol?
-    self.any_kind_of? Symbols, Symbol          
+    self.any_kind_of? Symbols, Symbol
   end
 end
     
