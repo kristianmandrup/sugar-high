@@ -1,7 +1,7 @@
 require 'sugar-high/kind_of'
 require 'sugar-high/array'
 
-class Class
+class Module 
   def include_and_extend(the_module, options={})
     options[:instance_methods] ||= :InstanceMethods
     options[:class_methods] ||= :ClassMethods
