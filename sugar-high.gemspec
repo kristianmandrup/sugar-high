@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.4.9"
+  s.version = "0.4.9.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
@@ -66,7 +66,7 @@ Gem::Specification.new do |s|
     "spec/fixtures/autoload_modulez.rb",
     "spec/fixtures/autoload_modulez/first.rb",
     "spec/fixtures/autoload_modulez/second.rb",
-    "spec/fixtures/autoload_modulez/third.rb",
+    "spec/fixtures/autoload_modulez/third_one_here.rb",
     "spec/fixtures/class_file.rb",
     "spec/fixtures/class_file.txt",
     "spec/fixtures/content_file.txt",
