@@ -1,4 +1,5 @@
 require 'sugar-high/kind_of'
+require 'sugar-high/array'
 
 class Class
   def include_and_extend(the_module, options={})
@@ -84,4 +85,22 @@ module ClassExt
     raise "Not one Module for any of: #{names} is currently loaded" if modules.empty?
     modules.first
   end
-end  
+end 
+
+class Object
+  # Mixing this method to Object, so both modules and classes would be able to use it!
+  def autoload_modules *args
+
+    options = args.extract_options!
+    from = options[:from]
+    
+    raise "Define load path like :from => '#{self.name.to_s.downcase}'" unless from
+    
+    # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
+    # It is very useful for situations of having not load_paths built Rails or Gems way.
+
+    args.each do |req_name|
+      send :autoload, req_name, "#{from}/#{req_name.to_s.downcase}"
+    end
+  end
+end

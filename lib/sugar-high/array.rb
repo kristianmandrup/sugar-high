@@ -97,6 +97,12 @@ class Array
   def extract(sym)
    map { |e| e.send(sym) }
   end
+
+  # Repeat overall-used method here, to use it without Rails
+  def extract_options!
+    last.is_a?(::Hash) ? pop : {}
+  end unless defined? Array.new.extract_options!
+        
 end
 
 module MathArray
