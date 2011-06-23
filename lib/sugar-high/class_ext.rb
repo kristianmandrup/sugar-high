@@ -13,7 +13,19 @@ class Class
   end
 end
 
-module ClassExt
+module AutoLoader
+  @@root = ''
+
+  def self.root
+    @@root
+  end
+
+  def self.root= root_dir 
+    @@root = root_dir
+  end
+end  
+
+module ClassExt  
   def get_module name
     # Module.const_get(name)
     name.to_s.camelize.constantize
@@ -91,13 +103,13 @@ class Object
   # Mixing this method to Object, so both modules and classes would be able to use it!
   def autoload_modules *args
 
-    options = args.extract_options!
-    from = options[:from] || self.name.to_s.underscore
-    
+    options = args.extract_options!    
+    root = options[:root] || AutoLoader.root || ''
+    from = options[:from] || File.join(root, self.name.to_s.underscore)
+
     # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
     # It is very useful for situations of having not load_paths built Rails or Gems way.
-
-    args.each do |req_name|
+    args.each do |req_name|      
       send :autoload, req_name, "#{from}/#{req_name.to_s.underscore}"
     end
   end

@@ -41,6 +41,13 @@ describe Object do
       require 'fixtures/autoload_modules'
       AutoloadModules::Third.should respond_to(:test)
     end
+
+    it 'should autoload modules using ClassExt#autoload_root' do
+      AutoLoader.root = 'fixtures'
+      require 'fixtures/autoload_modules_root'
+      AutoloadModulesRoot::Third.should respond_to(:test)
+    end        
+
     it "should autoload modules from __FILE__'s dir if :from is omitted'" do
       require 'fixtures/autoload_modulez'
       AutoloadModulez::ThirdOneHere.should respond_to(:test)

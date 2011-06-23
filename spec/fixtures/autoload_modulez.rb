@@ -1,6 +1,4 @@
-$:.unshift File.dirname(__FILE__)
-
 module AutoloadModulez
-  autoload_modules :First, :Second, :ThirdOneHere
+  autoload_modules :First, :Second, :ThirdOneHere, :root => 'fixtures'
 end
 
