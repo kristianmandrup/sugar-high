@@ -39,7 +39,18 @@ def trial
   @trial ||= Trial.new
 end
 
-describe Object do
+describe Module do
+
+  describe "#include_and_extend" do
+    it "should include class methods" do
+      Third.should respond_to(:class_method)  
+    end
+
+    it "should include class methods" do
+      Third.new.should respond_to(:instance_method)
+    end
+  end
+  
   describe "#autoload_modules" do
     it "should autoload modules using :from => path" do
       require 'fixtures/autoload_modules'
@@ -57,19 +68,7 @@ describe Object do
       AutoloadModulez::ThirdOneHere.should respond_to(:test)
     end
   end
-end
 
-describe Module do
-
-  describe "#include_and_extend" do
-    it "should include class methods" do
-      Third.should respond_to(:class_method)  
-    end
-
-    it "should include class methods" do
-      Third.new.should respond_to(:instance_method)
-    end
-  end
 end
 
 describe ClassExt do
