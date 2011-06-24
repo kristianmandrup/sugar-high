@@ -11,6 +11,20 @@ class Module
     include main_module.const_get(options[:instance_methods]) if main_module.const_defined?(options[:instance_methods])
     extend main_module.const_get(options[:class_methods]) if main_module.const_defined?(options[:class_methods])
   end
+  
+  def autoload_modules *args
+
+    options = args.extract_options!    
+    root = options[:root] || AutoLoader.root || ''
+    from = options[:from] || File.join(root, self.name.to_s.underscore)
+
+    # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
+    # It is very useful for situations of having not load_paths built Rails or Gems way.
+    args.each do |req_name|      
+      send :autoload, req_name, "#{from}/#{req_name.to_s.underscore}"
+    end
+  end
+
 end
 
 module AutoLoader
@@ -98,19 +112,3 @@ module ClassExt
     modules.first
   end
 end 
-
-class Object
-  # Mixing this method to Object, so both modules and classes would be able to use it!
-  def autoload_modules *args
-
-    options = args.extract_options!    
-    root = options[:root] || AutoLoader.root || ''
-    from = options[:from] || File.join(root, self.name.to_s.underscore)
-
-    # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
-    # It is very useful for situations of having not load_paths built Rails or Gems way.
-    args.each do |req_name|      
-      send :autoload, req_name, "#{from}/#{req_name.to_s.underscore}"
-    end
-  end
-end
