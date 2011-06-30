@@ -16,7 +16,7 @@ class Module
 
     options = args.extract_options!    
     root = options[:root] || AutoLoader.root || ''
-    from = options[:from] || File.join(root, self.name.to_s.underscore)
+    from = options[:from] || [root, self.name.to_s.underscore].join('/')
 
     # Here also could be adding of the file in top of load_paths like: $:.unshift File.dirname(__FILE__)
     # It is very useful for situations of having not load_paths built Rails or Gems way.

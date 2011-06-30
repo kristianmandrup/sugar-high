@@ -64,6 +64,9 @@ File object
 ### Class Extension
 
 * autoload_modules (by @stanislaw)
+
+Makes it easy to autoload multiple modules by standard folder-to-module mapping convention
+
 * is_class?
 * is_module?
 * class_exists?
