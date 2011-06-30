@@ -58,6 +58,8 @@ Gem::Specification.new do |s|
     "lib/sugar-high/rspec/matchers/have_aliases.rb",
     "lib/sugar-high/string.rb",
     "sandbox/test_routes_mutate.rb",
+    "spec/autoload_blank_root.rb",
+    "spec/autoload_blank_root/hello.rb",
     "spec/fixtures/application_file.rb",
     "spec/fixtures/autoload_modules.rb",
     "spec/fixtures/autoload_modules/subdir/first.rb",
