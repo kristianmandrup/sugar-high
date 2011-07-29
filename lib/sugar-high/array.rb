@@ -3,17 +3,26 @@ require 'sugar-high/enumerable'
 require 'sugar-high/path'
 
 class Array
+  def pick_one!
+    index = Kernel.rand(self.size)
+    self[index]
+  end
+
+  def pick num
+    num.times.inject([]) {|res, x| res << pick_one!}
+  end
+
   def without(*values)
      copy = self.dup
      values.flatten.each { |value| copy.delete(value) }
      copy
   end
-      
+
   def to_symbols
     res = self.flatten.select_labels
     res = res.map{|a| a.to_s.to_sym } if res
     res || []
-  end  
+  end
 
   def to_symbols!
    self.flatten!

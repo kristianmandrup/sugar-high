@@ -1,7 +1,7 @@
 require 'sugar-high/kind_of'
 require 'sugar-high/array'
 
-class Module 
+class Module
   def include_and_extend(the_module, options={})
     options[:instance_methods] ||= :InstanceMethods
     options[:class_methods] ||= :ClassMethods
@@ -11,7 +11,7 @@ class Module
     include main_module.const_get(options[:instance_methods]) if main_module.const_defined?(options[:instance_methods])
     extend main_module.const_get(options[:class_methods]) if main_module.const_defined?(options[:class_methods])
   end
-  
+
   def autoload_modules *args
 
     options = args.extract_options!
@@ -57,16 +57,16 @@ module AutoLoader
       namespaces[clazz_name.to_sym] ? namespaces[clazz_name.to_sym] : name
     end.join('/')
   end
-end  
+end
 
-module ClassExt  
+module ClassExt
   def get_module name
     # Module.const_get(name)
     name.to_s.camelize.constantize
   rescue
     nil
   end
-    
+
   def is_class?(clazz)
     clazz.is_a?(Class) && (clazz.respond_to? :new)
   end
@@ -74,42 +74,42 @@ module ClassExt
   def is_module?(clazz)
     clazz.is_a?(Module) && !(clazz.respond_to? :new)
   end
-     
+
   def class_exists?(name)
     is_class? get_module(name)
   rescue
     return false
-  end  
+  end
 
   def module_exists?(name)
     is_module? get_module(name)
   rescue NameError
     return false
-  end  
-  
+  end
+
   def try_class name
     return name if name.kind_of?(Class)
     found = get_module(name) if name.kind_of_label?
     return found if found.is_a?(Class)
-  rescue          
+  rescue
     false
-  end  
+  end
 
   def try_module name
     return name if name.kind_of?(Module)
     found = get_module(name) if name.kind_of_label?
     return found if found.is_a?(Module)
-  rescue          
+  rescue
     false
-  end  
+  end
 
   def try_module_only name
     return name if is_module?(name)
     found = get_module(name) if name.kind_of_label?
     return found if is_module?(found)
-  rescue          
+  rescue
     false
-  end  
+  end
 
 
   def find_first_class *names

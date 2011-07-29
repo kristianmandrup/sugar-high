@@ -7,15 +7,15 @@ class Object
   end
 
   def any_kind_of? *kinds
-    kinds.all_kinds.each do |kind| 
-      return true if self.kind_of? kind        
+    kinds.all_kinds.each do |kind|
+      return true if self.kind_of? kind
     end
     false
   end
 
   def not_any_kind_of? *kinds
-    kinds.all_kinds.each do |kind| 
-      return false if self.kind_of? kind        
+    kinds.all_kinds.each do |kind|
+      return false if self.kind_of? kind
     end
     true
   end
@@ -33,10 +33,10 @@ class Object
     self.any_kind_of? Symbols, Symbol
   end
 end
-    
-class Kinds            
+
+class Kinds
   attr_accessor :kinds
-  
+
   def initialize *kinds
     self.kinds = *kinds
   end

@@ -1,21 +1,21 @@
-# Sugar high!
+h1. Sugar high!
 
 Inspired by the 'zucker' project.
 
-## Install
+h2. Install
 
 <code>gem install sugar-high</code>
 
-## Usage
+h2. Usage
 
 See specs for example use
 
-## Update June 22, 2011
+h2. Update June 22, 2011
 
 file_mutate is now backwards compatible again in order nt to break gems such as cream et. al. that depend on auto inclusion of all File extensions into
 File object
 
-## Sugar packs
+h2. Sugar packs
 
 * alias
 * arguments
@@ -32,23 +32,23 @@ File object
 * metaclass
 * methods
 * module
-* not  
+* not
 * numeric
 * path
 * properties
 * reg_exp
-           
-### Alias
+
+h3. Alias
 
 * multi_alias name, options_hash : creates multiple aliases using patterns
 
-### Arguments
+h3. Arguments
 
 * args (Used in generator CLI testing)
 * last_option *args : Returns last argument if hash or empty hash otherwise
 * ...
 
-### Array
+h3. Array
 
 * to_symbols
 * to_symbols_uniq
@@ -57,11 +57,11 @@ File object
 * file_join
 * ...
 
-### Blank
+h3. Blank
 
 * blank?
 
-### Class Extension
+h3. Class Extension
 
 * autoload_modules (by @stanislaw)
 
@@ -77,7 +77,7 @@ Makes it easy to autoload multiple modules by standard folder-to-module mapping 
 * find_first_class(*class_names)
 * find_first_module(*module_names)
 
-### Enumerable
+h3. Enumerable
 
 * only_kinds_of?(*modules)
 * only_labels?
@@ -93,16 +93,16 @@ Makes it easy to autoload multiple modules by standard folder-to-module mapping 
 * select_only(type)    
 * select_only!(type)
 
-### File
+h3. File
 
 * self.blank? and blank? : Is file empty?
 * self.overwrite : overwrite file with new content (mode = 'w')
 * self.append : append to existing file with content or create new (mode = 'w+')
 
-### File Mutate
+h3. File Mutate
 Adds all File mutation modules to the File class
 
-### File Mutation
+h3. File Mutation
 
 Various File Mutation modules that can be added to any module or class for some nice benefits. Useful for generators fx.
 
@@ -123,44 +123,44 @@ Otherwise, simply specify which ones:
 
 <pre>File.mutate_ext :append_content, overwrite_content</pre>
 
-### Hash
+h3. Hash
 
 * hash_revert : Reverse keys and values
 * try_keys : return value of first key that is in Hash
 
-### Includes
+h3. Includes
 
 * includes : Includes modules listed as symbols
 
-### Kind of
+h3. Kind of
 
 * any_kind_of? *const_list
 * kind_of_label? : Symbol or String ?
 
-### Metaclass
+h3. Metaclass
 
 * metaclass : Get the metaclass, can be used to dynamically add class singleton methods!
 
-### Methods
+h3. Methods
 
 * get_methods *types : Get collection of methods, fx :private and :protected (or :all)
 
-### Module
+h3. Module
 
 * modules *names
 * nested_modules *names
 
 Create empty namespaces
 
-### Not
+h3. Not
 
 * not
 
 Adds the _#not_ method to Object, so you can say fx: <code>if x.not.empty?</code>
 
-### Numeric
+h3. Numeric
 
-module _NumericCheckExt_ 
+module _NumericCheckExt_
 
 * is_numeric?(arg) - alias numeric?
 * check_numeric!(arg) - raises error if argument is not numeric
@@ -169,12 +169,11 @@ module NumberDslExt added to all numeric classes (Float and Numeric)
 * thousand
 * hundred
 
-<pre>
-3.thousand + 2.hundred 
-  => 3200  
+<pre>3.thousand + 2.hundred 
+  => 3200
 </pre>
 
-### Path
+h3. Path
 * String#path - extends String instance with PathString
 
 module PathString
@@ -183,8 +182,8 @@ module PathString
 * to_symlink
 
 <pre>
-"a/b/c".to_dir  
-"a/b/c/d.rb".to_file  
+"a/b/c".to_dir
+"a/b/c/d.rb".to_file
 </pre>
 
 File type existance
@@ -205,7 +204,7 @@ Navigate dirs
 "a/b/../".post_down(1).should == "a/b/"  
 </pre>
 
-### Properties
+h3. Properties
 
 <pre>
 class CruiseShip
@@ -213,15 +212,15 @@ class CruiseShip
 
   property :direction
   property :speed, is(0..300)
-end  
+end
 
-ship = CruiseShip.new  
+ship = CruiseShip.new
 ship.add_direction_listener(lambda {|x| puts "Oy... someone changed the direction to #{x}"})    
 ship.speed = 200
 ship.speed = 301 # outside valid range!
 </pre>
 
-### RegExp
+h3. RegExp
 
 String, RegExp
 * to_regexp
@@ -232,17 +231,17 @@ MatchData
 * offset_after
 * offset_before
 
-## RSpec 2 Matchers
+h3. RSpec 2 Matchers
 
 * have_aliases(method, *alias_methods)  
 
 <pre>
   require 'sugar-high/rspec'
-  
+
   have_aliases :original, :alias_1, :alias2
 </pre>
 
-## Note on Patches/Pull Requests
+h2. Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -252,6 +251,6 @@ MatchData
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-## Copyright
+h2. Copyright
 
 Copyright (c) 2010 Kristian Mandrup. See LICENSE for details.
