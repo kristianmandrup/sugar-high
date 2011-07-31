@@ -50,6 +50,8 @@ h3. Arguments
 
 h3. Array
 
+* pick_one! - pick one random item
+* pink (n) - pick n random item
 * to_symbols
 * to_symbols_uniq
 * to_strings
@@ -240,6 +242,20 @@ h3. RSpec 2 Matchers
 
   have_aliases :original, :alias_1, :alias2
 </pre>
+
+h3. String
+
+Class methods
+* random_letters
+* letters
+
+Instance methods
+* alpha_numeric
+* insert_before_last
+
+If not already defined
+* trim
+* concat
 
 h2. Note on Patches/Pull Requests
  
