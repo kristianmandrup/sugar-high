@@ -5,23 +5,23 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2011-07-20}
+  s.authors = ["Kristian Mandrup"]
+  s.date = %q{2011-07-31}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
-    "README.markdown"
+    "README.textile"
   ]
   s.files = [
     ".document",
     ".rspec",
     "Gemfile",
     "LICENSE",
-    "README.markdown",
+    "README.textile",
     "Rakefile",
     "VERSION",
     "lib/sugar-high.rb",
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "lib/sugar-high/arguments.rb",
     "lib/sugar-high/array.rb",
     "lib/sugar-high/blank.rb",
+    "lib/sugar-high/boolean.rb",
     "lib/sugar-high/class_ext.rb",
     "lib/sugar-high/enumerable.rb",
     "lib/sugar-high/file.rb",
@@ -110,8 +111,8 @@ Gem::Specification.new do |s|
     "sugar-high.gemspec"
   ]
   s.homepage = %q{http://github.com/kristianmandrup/sugar-high}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.5}
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Ruby convenience sugar packs!}
 
   if s.respond_to? :specification_version then
