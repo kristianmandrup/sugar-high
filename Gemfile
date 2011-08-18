@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "active_support", '>= 3.0.1'
+gem "activesupport", '>= 3.0.1'
 
 group :test, :development do
   gem "rspec", ">= 2.4.0"
