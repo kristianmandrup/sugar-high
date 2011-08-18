@@ -11,6 +11,8 @@ tmtags
 \#*
 .\#*
 
+Gemfile.lock
+
 ## VIM
 *.swp
 
