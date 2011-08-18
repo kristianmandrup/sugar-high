@@ -1,14 +1,14 @@
 source 'http://rubygems.org'
 
-gem "active_support", '>= 2.3'
+gem "active_support", '>= 3.0.1'
 
 group :test, :development do
-  gem "rspec", ">= 2.5.0"
+  gem "rspec", ">= 2.4.0"
 end
 
 group :development do
   gem "jeweler",  ">= 1.6.4"
-  gem "bundler",  ">= 1.0.10"
+  gem "bundler",  ">= 1.0.1"
   gem "rdoc"
 end
 
