@@ -1,3 +1,5 @@
+require 'sugar-high/array'
+
 class String
   def self.random_letters count, type = :lower
    letters(type).pick(count)
@@ -8,14 +10,14 @@ class String
     type == :upper ? letters.map!(&:upcase) : letters
   end
 
-  unless respond_to? :trim
+  unless new.respond_to? :trim
     def trim
       self.strip
     end
   end
- 
-  unless respond_to? :concat
-    def concat *args
+
+  unless new.respond_to? :concats
+    def concats *args
       args.inject(self) do |res, arg| 
         res << arg.to_s
         res
