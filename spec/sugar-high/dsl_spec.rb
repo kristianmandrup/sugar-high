@@ -19,7 +19,14 @@ describe "SugarHigh" do
         end.should == {:a => 1, :b => 2, :first => 1}
       end
 
-      it "should allow calls on instance in block + pass options hash to block" do
+      it "should allow calls on instance in block + pass options hash (variable) to block" do
+        options = {:session => 1, :request => 2, :params => 3}
+        with(Hash.new, options) do |options|
+          merge! options
+        end.should == {:session => 1, :request => 2, :params => 3}
+      end
+
+      it "should allow calls on instance in block + pass options hash (explicitly) to block" do
         with(Hash.new, :session => 1, :request => 2, :params => 3) do |options|
           merge! options
         end.should == {:session => 1, :request => 2, :params => 3}
