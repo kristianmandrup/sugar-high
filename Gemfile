@@ -4,6 +4,7 @@ gem "activesupport", '>= 3.0.1'
 
 group :test, :development do
   gem "rspec", ">= 2.4.0"
+  gem "rails", '>= 3.0.1'
 end
 
 group :development do

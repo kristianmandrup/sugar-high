@@ -22,6 +22,7 @@ h2. Sugar packs
 * array
 * blank
 * class_ext
+* dsl
 * enumerable
 * file
 * file_mutate (backwards compatible)
@@ -79,6 +80,21 @@ Makes it easy to autoload multiple modules by standard folder-to-module mapping 
 * find_first_class(*class_names)
 * find_first_module(*module_names)
 
+Note: This pack has recently been extracted into its own gem called *sweet_loader*
+
+h3. DSL
+
+* with(instance, &block) (by @stanislaw)
+
+Useful as a building block for DSLs!
+
+<pre>
+with(Hash.new) do
+  merge!(:a => 1)
+  merge!(:b => 2)
+end.should == {:a => 1, :b => 2}
+</pre>
+
 h3. Enumerable
 
 * only_kinds_of?(*modules)
@@ -92,7 +108,7 @@ h3. Enumerable
 * select_uniq_symbols!
 * select_strings
 * select_strings!
-* select_only(type)    
+* select_only(type)
 * select_only!(type)
 
 h3. File

@@ -13,8 +13,8 @@ module Simple
       'y'
     end
   end
-    
-  includes :x, :y    
+
+  includes :x, :y
 end
 
 class Xman
@@ -23,7 +23,7 @@ end
 
 describe "SugarHigh" do
   describe "Includes ext" do
-    describe '#includes' do    
+    describe '#includes' do
       it "should include namespaces X and Y" do
         Xman.new.respond_to?(:x).should be_true
         Xman.new.respond_to?(:y).should be_true
