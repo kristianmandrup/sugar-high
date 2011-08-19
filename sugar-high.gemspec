@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.5.3"
+  s.version = "0.5.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2011-08-18}
+  s.date = %q{2011-08-19}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/sugar-high/blank.rb",
     "lib/sugar-high/boolean.rb",
     "lib/sugar-high/class_ext.rb",
+    "lib/sugar-high/dsl.rb",
     "lib/sugar-high/enumerable.rb",
     "lib/sugar-high/file.rb",
     "lib/sugar-high/file_ext.rb",
@@ -54,6 +55,7 @@ Gem::Specification.new do |s|
     "lib/sugar-high/numeric.rb",
     "lib/sugar-high/path.rb",
     "lib/sugar-high/properties.rb",
+    "lib/sugar-high/rails/concerns.rb",
     "lib/sugar-high/regexp.rb",
     "lib/sugar-high/rspec/configure.rb",
     "lib/sugar-high/rspec/matchers/have_aliases.rb",
@@ -89,6 +91,7 @@ Gem::Specification.new do |s|
     "spec/sugar-high/array_spec.rb",
     "spec/sugar-high/blank_spec.rb",
     "spec/sugar-high/class_ext_spec.rb",
+    "spec/sugar-high/dsl_spec.rb",
     "spec/sugar-high/file/file_dsl_spec.rb",
     "spec/sugar-high/file_mutate/append_content_spec.rb",
     "spec/sugar-high/file_mutate/delete_spec.rb",
@@ -106,6 +109,7 @@ Gem::Specification.new do |s|
     "spec/sugar-high/numeric_spec.rb",
     "spec/sugar-high/path_spec.rb",
     "spec/sugar-high/properties_spec.rb",
+    "spec/sugar-high/rails/concerns_spec.rb",
     "spec/sugar-high/regexp_spec.rb",
     "spec/sugar-high/string_spec.rb",
     "sugar-high.gemspec"
@@ -121,12 +125,14 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<activesupport>, [">= 3.0.1"])
       s.add_development_dependency(%q<rspec>, [">= 2.4.0"])
+      s.add_development_dependency(%q<rails>, [">= 3.0.1"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.1"])
       s.add_development_dependency(%q<rdoc>, [">= 0"])
     else
       s.add_dependency(%q<activesupport>, [">= 3.0.1"])
       s.add_dependency(%q<rspec>, [">= 2.4.0"])
+      s.add_dependency(%q<rails>, [">= 3.0.1"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_dependency(%q<bundler>, [">= 1.0.1"])
       s.add_dependency(%q<rdoc>, [">= 0"])
@@ -134,6 +140,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<activesupport>, [">= 3.0.1"])
     s.add_dependency(%q<rspec>, [">= 2.4.0"])
+    s.add_dependency(%q<rails>, [">= 3.0.1"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
     s.add_dependency(%q<bundler>, [">= 1.0.1"])
     s.add_dependency(%q<rdoc>, [">= 0"])
