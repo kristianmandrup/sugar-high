@@ -84,7 +84,9 @@ Note: This pack has recently been extracted into its own gem called *sweet_loade
 
 h3. DSL
 
-* with(instance, &block) (by @stanislaw)
+by @stanislaw
+
+* with(instance, *args &block)
 
 Useful as a building block for DSLs!
 
@@ -93,6 +95,14 @@ with(Hash.new) do
   merge!(:a => 1)
   merge!(:b => 2)
 end.should == {:a => 1, :b => 2}
+
+with(Hash.new, :ready => true) do |options|
+  ...
+end
+
+with(Hash.new, 1,2,3) do |*args|
+  ...
+end
 </pre>
 
 h3. Enumerable
