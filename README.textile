@@ -10,10 +10,9 @@ h2. Usage
 
 See specs for example use
 
-h2. Update June 22, 2011
+h2. Update Aug 21, 2011
 
-file_mutate is now backwards compatible again in order nt to break gems such as cream et. al. that depend on auto inclusion of all File extensions into
-File object
+Extracted *file_mutate* and *sweetloader* gems.
 
 h2. Sugar packs
 
