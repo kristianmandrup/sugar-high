@@ -25,8 +25,6 @@ h2. Sugar packs
 * dsl
 * enumerable
 * file
-* file_mutate (backwards compatible)
-* file_mutation
 * includes
 * kind_of
 * math
@@ -126,30 +124,6 @@ h3. File
 * self.blank? and blank? : Is file empty?
 * self.overwrite : overwrite file with new content (mode = 'w')
 * self.append : append to existing file with content or create new (mode = 'w+')
-
-h3. File Mutate
-Adds all File mutation modules to the File class
-
-h3. File Mutation
-
-Various File Mutation modules that can be added to any module or class for some nice benefits. Useful for generators fx.
-
-Mutation modules within SugarHigh::FileMutate
-
-* AppendContent
-* Delete
-* InsertContent
-* OverwriteContent
-* RemoveContent
-* ReplaceContent
-
-To add all mutate modules to the File class, simply:
-
-<pre>File.mutate_ext :all</pre>
-
-Otherwise, simply specify which ones:
-
-<pre>File.mutate_ext :append_content, overwrite_content</pre>
 
 h3. Hash
 

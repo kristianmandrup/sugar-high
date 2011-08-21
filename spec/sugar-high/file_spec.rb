@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'sugar-high/file'
-require 'sugar-high/file_mutate'
 
 describe "SugarHigh" do
   describe "File" do
@@ -23,7 +22,7 @@ describe "SugarHigh" do
       end
     end
 
-    describe '#blank?' do    
+    describe '#blank?' do
       it "should return true for an empty file" do
         File.new(empty_file).blank?.should be_true
       end
@@ -37,7 +36,7 @@ describe "SugarHigh" do
       it "should find content in file using String argument" do
         File.overwrite(search_file) do
           'Find this line right here!'
-        end                
+        end
         File.has_content?(search_file, 'line right').should be_true
         File.has_content?(search_file, 'line left').should be_false
       end
@@ -45,18 +44,18 @@ describe "SugarHigh" do
       it "should find content in file using Regexp argument" do
         File.overwrite(search_file) do
           'Find this line right here!'
-        end                
+        end
         File.has_content?(search_file, /line right/).should be_true
         File.has_content?(search_file, /line left/).should be_false
       end
     end
-    
+
     describe '#read_from' do
 
       it "should read all the content into a block" do
         File.read_from non_empty_file do |content|
           content.should match /blip/
-          content.should match /blup/        
+          content.should match /blup/
         end
       end
 
@@ -75,17 +74,17 @@ describe "SugarHigh" do
       it "should read all the content before a given marker into a block" do
         File.read_from non_empty_file, :before => 'blap' do |content|
           content.should match /blip/
-          content.should_not match /blap/        
+          content.should_not match /blap/
         end
       end
 
       it "should read all the content after a given marker into a block" do
         File.read_from non_empty_file, :after => 'blap' do |content|
           content.should match /blup/
-          content.should_not match /blap/        
+          content.should_not match /blap/
         end
       end
-    end  
+    end
 
     describe '#read_content (instance)' do
       let(:non_empty_file)      { fixture_file 'non-empty.txt' }
@@ -93,56 +92,56 @@ describe "SugarHigh" do
       it "should read all the content into a block" do
         File.new(non_empty_file).read_content do |content|
           content.should match /blip/
-          content.should match /blup/        
+          content.should match /blup/
         end
       end
-    end    
-    
+    end
+
     describe '#read_from (class)' do
       let(:non_empty_file)      { fixture_file 'non-empty.txt' }
 
       it "should read all the content into a block" do
         File.read_from(non_empty_file) do |content|
           content.should match /blip/
-          content.should match /blup/        
+          content.should match /blup/
         end
       end
-    end        
+    end
   end
-  
+
   describe "Array" do
-    describe '#file_names' do 
+    describe '#file_names' do
       let(:replace_file)    { fixture_file 'file.txt' }
-    
+
       before :each do
         File.delete replace_file if File.file?(replace_file)
-      end    
-       
+      end
+
       it "should return all file names of an array of paths to files" do
         expr = fixtures_dir + '/*.txt'
         Dir.glob(expr).file_names('txt').should include('empty', 'non-empty')
       end
     end
-  end 
-  
+  end
+
   describe "String" do
-    describe '#new_file' do 
+    describe '#new_file' do
       let(:class_file)    { fixture_file 'class_file.txt' }
-           
+
       it "should get the existing file" do
         class_file.new_file.path.should =~ /class_file/
       end
     end
-    
-    describe '#file' do 
+
+    describe '#file' do
       let(:class_file)    { fixture_file 'class_file.txt' }
-           
+
       it "should get the file" do
         class_file.file.path.should =~ /class_file/
       end
     end
 
-    describe '#dir' do            
+    describe '#dir' do
       it "should get the dir" do
         fix_path = fixtures_dir.path
         # puts fix_path
@@ -152,4 +151,3 @@ describe "SugarHigh" do
     end
   end
 end
-    

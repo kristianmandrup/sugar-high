@@ -3,33 +3,32 @@ require 'sugar-high/arguments'
 require 'sugar-high/path'
 require 'sugar-high/regexp'
 require 'sugar-high/string'
-require 'sugar-high/file_mutate'
 require 'sugar-high/file_ext'
 
-class File   
+class File
   include SugarHigh::FileExt
-  extend  SugarHigh::FileExt::ClassMethods    
+  extend  SugarHigh::FileExt::ClassMethods
 end
 
 class Symbol
   def as_filename
     self.to_s.underscore
   end
-  
+
   def valid_file_command?
     [:read, :remove, :delete].include? self
   end
-  
+
   def file
     as_filename.file
-  end  
-end                 
+  end
+end
 
 class NilClass
   def valid_file_command?
     false
   end
-end  
+end
 
 class Array
   def file_names ext = '*'
@@ -39,7 +38,7 @@ end
 
 class String
   def as_filename
-    self.underscore  
+    self.underscore
   end
 
   def valid_file_command?
@@ -57,10 +56,10 @@ class String
   end
 
   def new_file
-    begin 
+    begin
       file
     rescue
-      File.open(self, 'w')    
+      File.open(self, 'w')
     end
   end
 end
