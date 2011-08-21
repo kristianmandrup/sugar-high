@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.5.5"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2011-08-19}
+  s.date = %q{2011-08-21}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -35,15 +35,6 @@ Gem::Specification.new do |s|
     "lib/sugar-high/enumerable.rb",
     "lib/sugar-high/file.rb",
     "lib/sugar-high/file_ext.rb",
-    "lib/sugar-high/file_mutate.rb",
-    "lib/sugar-high/file_mutate/append_content.rb",
-    "lib/sugar-high/file_mutate/delete.rb",
-    "lib/sugar-high/file_mutate/insert_content.rb",
-    "lib/sugar-high/file_mutate/mutate.rb",
-    "lib/sugar-high/file_mutate/overwrite_content.rb",
-    "lib/sugar-high/file_mutate/remove_content.rb",
-    "lib/sugar-high/file_mutate/replace_content.rb",
-    "lib/sugar-high/file_mutation.rb",
     "lib/sugar-high/hash.rb",
     "lib/sugar-high/includes.rb",
     "lib/sugar-high/kind_of.rb",
@@ -60,46 +51,15 @@ Gem::Specification.new do |s|
     "lib/sugar-high/rspec/configure.rb",
     "lib/sugar-high/rspec/matchers/have_aliases.rb",
     "lib/sugar-high/string.rb",
-    "sandbox/test_routes_mutate.rb",
-    "spec/auto_load_blank_root.rb",
-    "spec/autoload_blank_root.rb",
-    "spec/autoload_blank_root/hello.rb",
-    "spec/autoload_blank_root/sailor.rb",
-    "spec/fixtures/application_file.rb",
-    "spec/fixtures/autoload_modules.rb",
-    "spec/fixtures/autoload_modules/subdir/first.rb",
-    "spec/fixtures/autoload_modules/subdir/second.rb",
-    "spec/fixtures/autoload_modules/subdir/third.rb",
-    "spec/fixtures/autoload_modules_root.rb",
-    "spec/fixtures/autoload_modules_root/first.rb",
-    "spec/fixtures/autoload_modules_root/second.rb",
-    "spec/fixtures/autoload_modules_root/third.rb",
-    "spec/fixtures/autoload_modulez.rb",
-    "spec/fixtures/autoload_modulez/first.rb",
-    "spec/fixtures/autoload_modulez/second.rb",
-    "spec/fixtures/autoload_modulez/third_one_here.rb",
-    "spec/fixtures/class_file.rb",
-    "spec/fixtures/class_file.txt",
-    "spec/fixtures/content_file.txt",
     "spec/fixtures/empty.txt",
     "spec/fixtures/non-empty.txt",
-    "spec/fixtures/routes_file.rb",
     "spec/fixtures/search_file.txt",
     "spec/spec_helper.rb",
     "spec/sugar-high/alias_spec.rb",
     "spec/sugar-high/arguments_spec.rb",
     "spec/sugar-high/array_spec.rb",
     "spec/sugar-high/blank_spec.rb",
-    "spec/sugar-high/class_ext_spec.rb",
     "spec/sugar-high/dsl_spec.rb",
-    "spec/sugar-high/file/file_dsl_spec.rb",
-    "spec/sugar-high/file_mutate/append_content_spec.rb",
-    "spec/sugar-high/file_mutate/delete_spec.rb",
-    "spec/sugar-high/file_mutate/insert_before_last_spec.rb",
-    "spec/sugar-high/file_mutate/insert_content_spec.rb",
-    "spec/sugar-high/file_mutate/overwrite_content_spec.rb",
-    "spec/sugar-high/file_mutate/remove_content_spec.rb",
-    "spec/sugar-high/file_mutate/replace_content_spec.rb",
     "spec/sugar-high/file_spec.rb",
     "spec/sugar-high/hash_spec.rb",
     "spec/sugar-high/includes_spec.rb",
@@ -110,6 +70,10 @@ Gem::Specification.new do |s|
     "spec/sugar-high/path_spec.rb",
     "spec/sugar-high/properties_spec.rb",
     "spec/sugar-high/rails/concerns_spec.rb",
+    "spec/sugar-high/rails/fixture_user/scopes.rb",
+    "spec/sugar-high/rails/fixture_user/validations.rb",
+    "spec/sugar-high/rails/shared/associations.rb",
+    "spec/sugar-high/rails/shared/caching.rb",
     "spec/sugar-high/regexp_spec.rb",
     "spec/sugar-high/string_spec.rb",
     "sugar-high.gemspec"
