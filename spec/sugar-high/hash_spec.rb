@@ -3,6 +3,13 @@ require 'sugar-high/hash'
 
 describe "SugarHigh" do
   describe "Hash packet" do
+    describe '#rewrite' do
+      it 'should rewrite keys of the hash' do
+        mapping = {:a => :new_a, :b => :new_b}
+        {:a => 'hello', :b => 'hi', :c => 'hi'}.rewrite(mapping).should == {:new_a => 'hello', :new_b => 'hi', :c => 'hi'}
+      end
+    end
+
     describe '#hash_revert' do    
       it "should revert hash" do
         {:a => 'hello', :b => 'hi', :c => 'hi'}.hash_revert.should == {'hello' => [:a], 'hi' => [:b, :c]}
