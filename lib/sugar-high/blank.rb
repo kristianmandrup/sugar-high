@@ -26,7 +26,7 @@ class Hash #:nodoc:
 end
 
 class String
-  if !"".respond_to? :blank
+  unless "".respond_to? :blank
     def blank?
       self !~ /\S/
     end

@@ -21,6 +21,7 @@ h2. Sugar packs
 * array
 * blank
 * class_ext
+* delegate (extracted from Active Support)
 * dsl
 * enumerable
 * file
@@ -81,6 +82,14 @@ Makes it easy to autoload multiple modules by standard folder-to-module mapping 
 * find_first_module(*module_names)
 
 Note: This pack has recently been extracted into its own gem called *sweet_loader*
+
+h3. Delegate
+
+Extracted from Active Support core extensions:
+
+See "Delegate":http://apidock.com/rails/Module/delegate
+
+@activesupport/lib/active_support/core_ext/module/delegation.rb@
 
 h3. DSL
 

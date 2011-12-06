@@ -10,13 +10,13 @@ class String
     type == :upper ? letters.map!(&:upcase) : letters
   end
 
-  unless new.respond_to? :trim
+  unless "".respond_to? :trim
     def trim
       self.strip
     end
   end
 
-  unless new.respond_to? :concats
+  unless "".respond_to? :concats
     def concats *args
       args.inject(self) do |res, arg| 
         res << arg.to_s

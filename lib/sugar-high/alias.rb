@@ -4,7 +4,7 @@ require 'sugar-high/arguments'
 require 'sugar-high/array'
 require 'active_support/inflector'
 
-class Module         
+class Module
   
   # multi_alias name, :create => :new, :insert_into => [:inject_into, :update], :read => :X_content
   #                   :options => :after  
