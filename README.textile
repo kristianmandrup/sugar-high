@@ -36,6 +36,9 @@ h2. Sugar packs
 * properties
 * reg_exp
 
+* rails
+  * concerns
+
 h3. Alias
 
 * multi_alias name, options_hash : creates multiple aliases using patterns
@@ -241,6 +244,25 @@ h3. RSpec 2 Matchers
 
   have_aliases :original, :alias_1, :alias2
 </pre>
+
+h3. Rails
+
+Currently the following Rails packs are included:
+
+* concerns
+
+More to follow in the future...
+
+h4. Concerns
+
+@require 'rails/concerns'@
+
+Useful concern pattern in order to include concern modules into Rails models (or even controllers etc.) 
+
+* concerned_with *concern_modules
+* include_concerns *concern_modules
+* shared_concerns *concern_modules
+* include_shared_concerns *concern_modules
 
 h3. String
 
