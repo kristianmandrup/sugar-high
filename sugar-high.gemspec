@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "sugar-high"
-  s.version = "0.6.1"
+  s.name = %q{sugar-high}
+  s.version = "0.6.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Kristian Mandrup"]
-  s.date = "2011-12-06"
-  s.description = "More Ruby sugar - inspired by the 'zuker' project"
-  s.email = "kmandrup@gmail.com"
+  s.authors = [%q{Kristian Mandrup}]
+  s.date = %q{2011-12-06}
+  s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
+  s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
     "README.textile"
@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
     "lib/sugar-high/blank.rb",
     "lib/sugar-high/boolean.rb",
     "lib/sugar-high/class_ext.rb",
+    "lib/sugar-high/delegate.rb",
     "lib/sugar-high/dsl.rb",
     "lib/sugar-high/enumerable.rb",
     "lib/sugar-high/file.rb",
@@ -59,6 +60,8 @@ Gem::Specification.new do |s|
     "spec/sugar-high/arguments_spec.rb",
     "spec/sugar-high/array_spec.rb",
     "spec/sugar-high/blank_spec.rb",
+    "spec/sugar-high/delegate_defined_spec.rb",
+    "spec/sugar-high/delegate_spec.rb",
     "spec/sugar-high/dsl_spec.rb",
     "spec/sugar-high/file_spec.rb",
     "spec/sugar-high/hash_spec.rb",
@@ -78,10 +81,10 @@ Gem::Specification.new do |s|
     "spec/sugar-high/string_spec.rb",
     "sugar-high.gemspec"
   ]
-  s.homepage = "http://github.com/kristianmandrup/sugar-high"
-  s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
-  s.summary = "Ruby convenience sugar packs!"
+  s.homepage = %q{http://github.com/kristianmandrup/sugar-high}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.6}
+  s.summary = %q{Ruby convenience sugar packs!}
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
