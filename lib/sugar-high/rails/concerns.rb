@@ -1,13 +1,13 @@
 class Module
   def concerned_with(*concerns)
     concerns.each do |concern|
-      require_method "#{name.underscore}/#{concern}"
+      require_method "#{name.underscore}/#{concern.to_s.underscore}"
     end
   end
 
   def include_concerns(*concerns)
     concerns.each do |concern|
-      require_method "#{name.underscore}/#{concern}"
+      require_method "#{name.underscore}/#{concern.to_s.underscore}"
       concern_ns = [name, concern.to_s.camelize].join('::')
       self.send :include, concern_ns.constantize
       begin
@@ -19,13 +19,13 @@ class Module
 
   def shared_concerns(*concerns)
     concerns.each do |concern|
-      require_method "shared/#{concern}"
+      require_method "shared/#{concern.to_s.underscore}"
     end
   end
 
   def include_shared_concerns(*concerns)
     concerns.each do |concern|
-      require_method "shared/#{concern}"
+      require_method "shared/#{concern.to_s.underscore}"
       concern_ns = concern.to_s.camelize
       self.send :include, concern_ns.constantize
       begin
