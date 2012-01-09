@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{sugar-high}
-  s.version = "0.6.2.1"
+  s.version = "0.6.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2011-12-06}
+  s.date = %q{2012-01-09}
   s.description = %q{More Ruby sugar - inspired by the 'zuker' project}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
