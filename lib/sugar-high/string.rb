@@ -10,20 +10,17 @@ class String
     type == :upper ? letters.map!(&:upcase) : letters
   end
 
-  unless "".respond_to? :trim
-    def trim
-      self.strip
-    end
-  end
+  def trim
+    self.strip
+  end unless "".respond_to? :trim
 
-  unless "".respond_to? :concats
-    def concats *args
-      args.inject(self) do |res, arg| 
-        res << arg.to_s
-        res
-      end
+
+  def concats *args
+    args.inject(self) do |res, arg| 
+      res << arg.to_s
+      res
     end
-  end
+  end unless "".respond_to? :concats
 
   # remove prefixed '-' signs, then allow any letter, number, underscore '_' or dash '-'
   def alpha_numeric

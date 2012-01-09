@@ -25,12 +25,10 @@ class Hash #:nodoc:
   alias_method :blank?, :empty?
 end
 
-class String
-  unless "".respond_to? :blank
-    def blank?
-      self !~ /\S/
-    end
-  end
+class String  
+  def blank?
+    self !~ /\S/
+  end unless "".respond_to? :blank
 end  
 
 

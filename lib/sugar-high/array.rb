@@ -90,7 +90,7 @@ class Array
   
   def none?
     self.flatten.compact.empty?
-  end 
+  end unless [].respond_to? :none?  
   
   def flat_uniq
    self.flatten.compact.uniq
@@ -110,7 +110,7 @@ class Array
   # Repeat overall-used method here, to use it without Rails
   def extract_options!
     last.is_a?(::Hash) ? pop : {}
-  end unless defined? Array.new.extract_options!        
+  end unless [].respond_to? :extract_options!        
 end
 
 module MathArray
