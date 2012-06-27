@@ -33,7 +33,7 @@ describe "SugarHigh" do
     end
 
     describe '#has_content?' do
-      it "should find content in file using String argument" do
+      pending "should find content in file using String argument" do
         File.overwrite(search_file) do
           'Find this line right here!'
         end
@@ -41,7 +41,7 @@ describe "SugarHigh" do
         File.has_content?(search_file, 'line left').should be_false
       end
 
-      it "should find content in file using Regexp argument" do
+      pending "should find content in file using Regexp argument" do
         File.overwrite(search_file) do
           'Find this line right here!'
         end
