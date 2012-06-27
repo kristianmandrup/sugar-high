@@ -8,7 +8,7 @@ end
 
 class Context
   delegate :act, :to => :actor
-  
+
   def actor
     Actor.new
   end
