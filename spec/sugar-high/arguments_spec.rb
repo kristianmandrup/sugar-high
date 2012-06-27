@@ -28,23 +28,23 @@ describe "SugarHigh" do
           end
 
           it "should return the :hello => 'abe' " do
-            [{:hi => :def}, 3, 4, :hi => 'abe'].last_arg.should == {:hi => 'abe'}
-            [{:hi => :def}, [3,4, :hi => 'abe']].last_arg.should == {:hi => 'abe'}
+            [{:hi => :def}, 3, 4, {:hi => 'abe'}].last_arg.should == {:hi => 'abe'}
+            [{:hi => :def}, [3,4, {:hi => 'abe'}]].last_arg.should == {:hi => 'abe'}
           end
         end
       end
 
       describe '#last_option' do      
         it "should return the last hash" do
-          [3,4, :x => 3, :y => 5].last_option.should == {:x => 3, :y => 5} 
+          [3,4, {:x => 3, :y => 5}].last_option.should == {:x => 3, :y => 5} 
         end
       end
       
       describe "Last argument value" do
         context 'Last arg with default hello' do
           it "should return the arg value 'abe' " do
-            [3,4, :hi => 'abe'].last_arg_value(:hi => :def).should == 'abe'
-            [[3,4, :hi => 'abe']].last_arg_value(:hi => :def).should == 'abe'          
+            [3,4, {:hi => 'abe'}].last_arg_value(:hi => :def).should == 'abe'
+            [[3,4, {:hi => 'abe'}]].last_arg_value(:hi => :def).should == 'abe'          
           end
 
           it "should return the arg value :def " do
@@ -66,7 +66,7 @@ describe "SugarHigh" do
 
         it "should return the :hello => 'abe' " do
           last_arg({:hi => :def}, 3,4, :hi => 'abe').should == {:hi => 'abe'}
-          last_arg({:hi => :def}, [3,4, :hi => 'abe']).should == {:hi => 'abe'}
+          last_arg({:hi => :def}, [3,4, {:hi => 'abe'}]).should == {:hi => 'abe'}
         end          
       end
     end
@@ -75,7 +75,7 @@ describe "SugarHigh" do
       context 'Last arg with default hello' do
         it "should return the arg value 'abe' " do
           last_arg_value({:hi => :def}, 3,4, :hi => 'abe').should == 'abe'
-          last_arg_value({:hi => :def}, [3,4, :hi => 'abe']).should == 'abe'          
+          last_arg_value({:hi => :def}, [3,4, {:hi => 'abe'}]).should == 'abe'          
         end
 
         it "should return the arg value :def " do
