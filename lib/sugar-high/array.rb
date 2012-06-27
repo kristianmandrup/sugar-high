@@ -110,7 +110,11 @@ class Array
   # Repeat overall-used method here, to use it without Rails
   def extract_options!
     last.is_a?(::Hash) ? pop : {}
-  end unless [].respond_to? :extract_options!        
+  end unless [].respond_to? :extract_options!
+
+  def select! &block
+    replace select &block
+  end unless [].respond_to? :select!
 end
 
 module MathArray

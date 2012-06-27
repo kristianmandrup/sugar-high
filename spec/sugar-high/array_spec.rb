@@ -98,6 +98,12 @@ describe "SugarHigh" do
         [nil, nil].none?.should be_true
         nil.none?.should be_true        
       end      
-    end    
+    end
+
+    describe '#select!' do
+      arr = [1, 2, 3, 4]
+      arr.select!{|el| el % 2 == 0}
+      arr.should == [2, 4]
+    end
   end
 end
