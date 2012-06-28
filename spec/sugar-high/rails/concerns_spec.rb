@@ -20,14 +20,14 @@ describe "SugarHigh Rails" do
           FixtureUser.new.should respond_to("method_from_#{concern}_concern")
         end
       end
-    end 
-    
+    end
+
     describe "#shared_concerns" do
       it 'should require files from shared/#{concern}' do
         pending "How to be with namespaces? Is such raw implementation enough? Or just drop this kind of method?"
       end
     end
-   
+
     describe "#include_shared_concerns" do
       it 'should require and include from shared/#{concern}' do
         FixtureUser.new.should respond_to("method_from_shared_concern")

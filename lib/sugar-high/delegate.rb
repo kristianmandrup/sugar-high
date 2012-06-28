@@ -1,5 +1,5 @@
 class Module
-  unless self.respond_to? :delegate
+  unless respond_to? :delegate
     def delegate(*methods)
       options = methods.pop
       unless options.is_a?(Hash) && to = options[:to]

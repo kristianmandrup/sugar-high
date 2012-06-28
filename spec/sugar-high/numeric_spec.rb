@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'sugar-high/numeric'
 
 class Numeric
-  include NumberDslExt  
-end    
+  include NumberDslExt
+end
 
 module Num
   extend NumericCheckExt
@@ -24,7 +24,7 @@ describe "SugarHigh" do
         Num.numeric?(12.3).should be_true
       end
     end
-    
+
     describe 'check_numeric!' do
       it 'string "x1" is not numeric' do
         lambda {Num.check_numeric!("x0")}.should raise_error
@@ -35,7 +35,7 @@ describe "SugarHigh" do
       end
     end
   end
-  
+
   describe 'NumberDslExt' do
     describe '#hundred' do
       it '2 hundred is 200' do
@@ -49,4 +49,3 @@ describe "SugarHigh" do
     end
   end
 end
-      

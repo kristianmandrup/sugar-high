@@ -1,7 +1,7 @@
-class String  
+class String
   def path
     self.extend PathString
-  end      
+  end
 end
 
 module PathString
@@ -15,38 +15,38 @@ module PathString
   def to_dir option=nil
     raise ArgumentError, "Dir doesn't exist" if option == :raise && !File.directory?(self)
     Dir.new(self) if File.directory? self
-  end  
+  end
   alias_method :new_dir, :to_dir
   alias_method :dir, :to_dir
 
-  def to_symlink new_path #, option=nil  
+  def to_symlink new_path #, option=nil
     # raise ArgumentError, "New link location doesn't exist" if option == :raise && !File.exist?(new_path)
     File.symlink(self, new_path)
   end
   alias_method :new_symlink, :to_symlink
   alias_method :symlink, :to_symlink
-  
-  def exists?  
+
+  def exists?
     File.exist? self
   end
   alias_method :there?, :exists?
 
-  def file?  
+  def file?
     File.file? self
   end
   alias_method :is_file?, :file?
 
-  def dir?  
+  def dir?
     File.directory? self
   end
   alias_method :is_dir?, :dir?
   alias_method :directory?, :dir
 
-  def symlink?  
+  def symlink?
     File.symlink? self
   end
   alias_method :is_symlink?, :symlink?
-  
+
   def up lv
     ('../' * lv) + self
   end

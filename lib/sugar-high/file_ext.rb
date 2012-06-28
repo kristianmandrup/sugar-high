@@ -24,7 +24,7 @@ module SugarHigh
           rescue
             raise ArgumentError, ":before option must be a string or regular expression, was : #{options[:before]}"
           end
-        end 
+        end
 
         if options[:after]
           begin

@@ -4,7 +4,7 @@ module RSpec
 end
 
 module RSpec::Sugar
-  module Matchers  
+  module Matchers
     class HaveAliases
 
       attr_reader :method, :alias_methods, :cause
@@ -15,16 +15,16 @@ module RSpec::Sugar
         @cause = []
       end
 
-      def matches? obj, options={}        
+      def matches? obj, options={}
         if !obj.respond_to? method
           cause << "Method ##{method} to alias does NOT exist"
           return nil
         end
-        
-        alias_methods.each do |method|          
-          cause << "Alias method ##{method} does NOT exist" if !is_alias? obj, alias_meth            
-        end 
-        cause.empty?        
+
+        alias_methods.each do |method|
+          cause << "Alias method ##{method} does NOT exist" if !is_alias? obj, alias_meth
+        end
+        cause.empty?
       end
 
       def is_alias? obj, alias_meth
@@ -41,7 +41,7 @@ module RSpec::Sugar
 
       def negative_failure_message
         "Did not expect aliases to exist but, #{cause_msg}".gsub /NOT/, ''
-      end          
+      end
     end
 
     def have_aliases method, *alias_methods
