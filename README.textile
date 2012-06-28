@@ -53,7 +53,7 @@ h3. Arguments
 h3. Array
 
 * pick_one! - pick one random item
-* pink (n) - pick n random item
+* pick (n) - pick n random item
 * to_symbols
 * to_symbols_uniq
 * to_strings
