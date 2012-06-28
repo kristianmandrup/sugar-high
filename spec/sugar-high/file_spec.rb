@@ -4,7 +4,7 @@ require 'sugar-high/file'
 describe "SugarHigh" do
   describe "File" do
     let(:empty_file)      { fixture_file 'empty.txt' }
-    let(:non_empty_file)  { fixture_file 'non-empty.txt'} 
+    let(:non_empty_file)  { fixture_file 'non-empty.txt'}
     let(:replace_file)    { fixture_file 'file.txt' }
     let(:search_file)     { fixture_file 'search_file.txt' }
 
@@ -14,7 +14,7 @@ describe "SugarHigh" do
 
     describe '#self.blank?' do
       it "should return true for an empty file" do
-        File.blank?(empty_file).should be_true 
+        File.blank?(empty_file).should be_true
       end
 
       it "should return false for a NON-empty file" do
@@ -33,7 +33,7 @@ describe "SugarHigh" do
     end
 
     describe '#has_content?' do
-      it "should find content in file using String argument" do
+      pending "should find content in file using String argument" do
         File.overwrite(search_file) do
           'Find this line right here!'
         end
@@ -41,7 +41,7 @@ describe "SugarHigh" do
         File.has_content?(search_file, 'line left').should be_false
       end
 
-      it "should find content in file using Regexp argument" do
+      pending "should find content in file using Regexp argument" do
         File.overwrite(search_file) do
           'Find this line right here!'
         end

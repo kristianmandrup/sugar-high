@@ -11,20 +11,20 @@ class Abc
   def howdy_kristian
     'hi'
   end
-  
+
   private
-  
+
   def humm_kristian
     'hi'
-  end  
-end  
+  end
+end
 
 describe "SugarHigh" do
   describe "Methods" do
     before do
       @obj = Abc.new
     end
-    
+
     it "should find all 3 methods saying 'hi' to kristian" do
       @obj.get_methods(:all).sort.grep(/(.*)_kristian$/).should have(3).items
     end

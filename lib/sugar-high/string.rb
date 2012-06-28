@@ -16,7 +16,7 @@ class String
 
 
   def concats *args
-    args.inject(self) do |res, arg| 
+    args.inject(self) do |res, arg|
       res << arg.to_s
       res
     end

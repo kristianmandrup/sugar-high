@@ -6,17 +6,17 @@ module NumericCheckExt
 
   def check_numeric! arg
     raise ArgumentError, "Argument must be Numeric" if !is_numeric? arg
-  end  
+  end
 end
 
-module NumberDslExt   
+module NumberDslExt
   def thousand
     self * 1000
-  end  
+  end
 
   def hundred
     self * 100
-  end  
+  end
 end
 
 [Float, Numeric].each do |mod|

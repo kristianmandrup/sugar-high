@@ -1,6 +1,6 @@
 # multi_alias name, :create => :new, :insert_into => [:inject_into, :update], :read => :X_content
-#                   :options => :after  
-# 
+#                   :options => :after
+#
 # create_xxx becomes new_xxx
 # insert_into_xxx becomes inject_into_xxx and update_xxx
 # read_xxx becomes xxx_content (overriding default :after action to insert at the X)
@@ -15,7 +15,7 @@ class Abc
   multi_alias :_after_ => :kristian, :hello => :howdy
 end
 
-class Xyz  
+class Xyz
   def hello_kristian
     'hi'
   end
@@ -23,46 +23,46 @@ class Xyz
   multi_alias :kristian, :hello => :alloha
 end
 
-class Ged  
+class Ged
   def kristian_hello
     'hejsa'
   end
-  
-  multi_alias :_before_ => :kristian, :hejsa => :hello, :_direction_ => :reverse  
-end  
+
+  multi_alias :_before_ => :kristian, :hejsa => :hello, :_direction_ => :reverse
+end
 
 class Plural
   def monster
     'monster'
   end
-  
+
   alias_for :monster, :pluralize => true
-end  
+end
 
 class Plural2
   def monster
     'monster'
   end
-  
+
   alias_for :monster, :beast, :pluralize => true
-end  
+end
 
 
 class Singular
   def monsters
     'monsters'
   end
-  
+
   alias_for :monsters, :singularize => true
-end  
+end
 
 class Singular2
   def monsters
     'monsters'
   end
-  
+
   alias_for :monsters, :beasts, :singularize => true
-end  
+end
 
 
 class AliasHash
@@ -74,9 +74,9 @@ class AliasHash
     'monster'
   end
 
-  
+
   alias_hash :monsters => :beasts, :singularize => true
-end  
+end
 
 
 class Wow
@@ -93,11 +93,11 @@ class Wow
       end
     }
   end
-  multi_alias REGISTRATION_LINKS.merge(:_after_ => :link)  
+  multi_alias REGISTRATION_LINKS.merge(:_after_ => :link)
 end
-     
+
 describe "SugarHigh" do
-  describe "Arguments" do    
+  describe "Arguments" do
     context 'should alias :hello_kristian with :howdy_kristian ' do
       it "should find alias" do
         Abc.new.respond_to?(:howdy_kristian).should be_true
@@ -131,7 +131,7 @@ describe "SugarHigh" do
     it "should find nice aliases from using alias_hash" do
       ah = AliasHash.new
       ah.beasts.should == 'monsters'
-      ah.beast.should == 'monster'      
+      ah.beast.should == 'monster'
     end
 
 

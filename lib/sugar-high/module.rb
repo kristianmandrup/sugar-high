@@ -13,16 +13,16 @@ def modules *module_names, &block
       module #{name.to_s.camelize}
         #{yield block if block}
       end
-    }    
+    }
   end
-end 
+end
 
 def nested_modules *module_names, &block
-  module_names.flatten.inject([]) do |res, name|  
+  module_names.flatten.inject([]) do |res, name|
     res << %{
       module #{name.to_s.camelize}
         #{yield block if block}
-      end}  
+      end}
   end.flatten.join("\n")
 end
 

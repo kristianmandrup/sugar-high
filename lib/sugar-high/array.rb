@@ -51,19 +51,19 @@ class Array
   def to_strings!
     self.flatten!
     self.select_labels!.map!(&:to_s)
-  end  
+  end
 
   def to_strings
     self.flatten.select_labels.map(&:to_s)
-  end  
+  end
 
   def to_filenames
     self.to_strings.map(&:underscore)
-  end  
+  end
 
   def to_filenames!
     self.to_strings!.map!(&:underscore)
-  end  
+  end
 
   def to_paths
     self.map(&:path)
@@ -76,32 +76,32 @@ class Array
 
   def file_join
     File.join(*self.flatten)
-  end    
+  end
 
   def to_files
     self.map{|fp| fp.path.to_file }
-    self.extend FilesArray    
+    self.extend FilesArray
   end
 
   def to_files!
     self.map!{|fp| fp.path.to_file }
-    self.extend FilesArray    
+    self.extend FilesArray
   end
-  
+
   def none?
     self.flatten.compact.empty?
-  end unless [].respond_to? :none?  
-  
+  end unless [].respond_to? :none?
+
   def flat_uniq
    self.flatten.compact.uniq
-  end 
+  end
 
   def flat_uniq!
    self.flatten!
    self.compact!
    self.uniq!
    self
-  end 
+  end
 
   def extract(sym)
    map { |e| e.send(sym) }
@@ -110,7 +110,11 @@ class Array
   # Repeat overall-used method here, to use it without Rails
   def extract_options!
     last.is_a?(::Hash) ? pop : {}
-  end unless [].respond_to? :extract_options!        
+  end unless [].respond_to? :extract_options!
+
+  def select! &block
+    replace select &block
+  end unless [].respond_to? :select!
 end
 
 module MathArray
@@ -120,22 +124,22 @@ module MathArray
 
   def mean
    (size > 0) ? sum.to_f / size : 0
-  end 
-end  
+  end
+end
 
 module FilesArray
   def delete_all!
-    self.each do |f| 
+    self.each do |f|
       f.delete! if f.kind_of?(File)
     end
   end
 end
 
-class NilClass  
-  def flat_uniq  
+class NilClass
+  def flat_uniq
     []
   end
-  
+
   def none?
     true
   end

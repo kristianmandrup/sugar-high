@@ -2,13 +2,13 @@ class Array
   def args
     flatten.map{|a| a.args}.flatten
   end
-  
+
   def last_option
     default = self.last_arg
     last = self.flatten.last
-    last.kind_of?(Hash) ? last : default    
-  end  
-  
+    last.kind_of?(Hash) ? last : default
+  end
+
   def last_arg default = {}
     last = self.flatten.last
     last.kind_of?(Hash) ? last : default
@@ -20,7 +20,7 @@ class Array
     key = default.keys.first
     return default[key] if !last.kind_of? Hash
     last[key] ? last[key] : default[key]
-  end  
+  end
 end
 
 class Symbol
@@ -38,7 +38,7 @@ end
 def last_option *args
   default = last_arg({}, *args)
   last = args.flatten.last
-  last.kind_of?(Hash) ? last : default    
+  last.kind_of?(Hash) ? last : default
 end
 
 def last_arg default, *args
