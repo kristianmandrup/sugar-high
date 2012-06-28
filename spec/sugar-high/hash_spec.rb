@@ -10,7 +10,7 @@ describe "SugarHigh" do
       end
     end
 
-    describe '#hash_revert' do    
+    describe '#hash_revert' do
       it "should revert hash" do
         {:a => 'hello', :b => 'hi', :c => 'hi'}.hash_revert.should == {'hello' => [:a], 'hi' => [:b, :c]}
       end
@@ -26,6 +26,6 @@ describe "SugarHigh" do
       it "should return nil if no key triggered" do
         {:a => 'hello', :b => 'hi'}.try_keys([:x, :y, :z], :default => 'none').should == 'none'
       end
-    end        
+    end
   end
 end

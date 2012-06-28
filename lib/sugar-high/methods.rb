@@ -1,4 +1,4 @@
-class Object  
+class Object
   def get_methods *types
     types.inject([]) do |list, type|
       list << case type

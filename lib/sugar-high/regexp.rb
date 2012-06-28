@@ -1,4 +1,4 @@
-class String 
+class String
   def to_regexp
     /#{Regexp.escape(self)}/
   end
@@ -7,7 +7,7 @@ end
 class Regexp
   def to_regexp
     self
-  end  
+  end
 end
 
 class MatchData
@@ -16,7 +16,7 @@ class MatchData
   end
 
   def offset_before
-    offset(0)[0] -1    
+    offset(0)[0] -1
   end
 end
 

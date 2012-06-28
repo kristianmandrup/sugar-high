@@ -1,16 +1,16 @@
 module Enumerable
-  def only_kinds_of? *kinds    
-    all?{|a| a.any_kind_of? *kinds }    
+  def only_kinds_of? *kinds
+    all?{|a| a.any_kind_of? *kinds }
   end
 
   def only_labels?
-    all?{|a| a.kind_of_label? }    
+    all?{|a| a.kind_of_label? }
   end
 
   def only_numbers?
-    all?{|a| a.kind_of_number? }    
+    all?{|a| a.kind_of_number? }
   end
-  
+
   def select_kinds_of *kinds
     select{|a| a.any_kind_of? *kinds }
   end
@@ -61,19 +61,19 @@ module Enumerable
     self
   end
 
-  def select_only type    
+  def select_only type
     const = type.kind_of_label? ? "#{type.to_s.camelize}".constantize : type
     select{|a| a.kind_of? const}
   end
 
-  def select_only! type    
+  def select_only! type
     const = type.kind_of_label? ? "#{type.to_s.camelize}".constantize : type
     select!{|a| a.kind_of? const}
     self
   end
-  
+
   def all_kinds
-    map do |a| 
+    map do |a|
       case a
       when Kinds
         a.kinds

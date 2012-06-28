@@ -4,7 +4,7 @@ require 'sugar-high/file'
 describe "SugarHigh" do
   describe "File" do
     let(:empty_file)      { fixture_file 'empty.txt' }
-    let(:non_empty_file)  { fixture_file 'non-empty.txt'} 
+    let(:non_empty_file)  { fixture_file 'non-empty.txt'}
     let(:replace_file)    { fixture_file 'file.txt' }
     let(:search_file)     { fixture_file 'search_file.txt' }
 
@@ -14,7 +14,7 @@ describe "SugarHigh" do
 
     describe '#self.blank?' do
       it "should return true for an empty file" do
-        File.blank?(empty_file).should be_true 
+        File.blank?(empty_file).should be_true
       end
 
       it "should return false for a NON-empty file" do

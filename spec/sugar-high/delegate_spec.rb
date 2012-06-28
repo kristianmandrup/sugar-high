@@ -14,6 +14,6 @@ class Context
   end
 end
 
-describe 'delegate NOT already defined' do    
+describe 'delegate NOT already defined' do
   specify { Context.new.act.should == 'actor' }
 end
