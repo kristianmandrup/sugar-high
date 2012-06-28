@@ -9,7 +9,11 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
+
 require 'rake'
+
+$:.unshift File.expand_path('lib', File.dirname(__FILE__))
+require 'sugar-high/version'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
@@ -20,6 +24,7 @@ Jeweler::Tasks.new do |gem|
   gem.homepage = "http://github.com/kristianmandrup/sugar-high"
   gem.email = "kmandrup@gmail.com"
   gem.authors = ["Kristian Mandrup"]
+  gem.version = SugarHigh::VERSION
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
