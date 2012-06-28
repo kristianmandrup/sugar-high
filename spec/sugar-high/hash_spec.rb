@@ -11,8 +11,13 @@ describe "SugarHigh" do
     end
 
     describe '#hash_revert' do
+      # The way 1.8.7 orders Hashes is really strange. It is hard to write straight expectation here
       it "should revert hash" do
-        {:a => 'hello', :b => 'hi', :c => 'hi'}.hash_revert.should == {'hello' => [:a], 'hi' => [:b, :c]}
+        reverted_hash = {:a => 'hello', :b => 'hi', :c => 'hi'}.hash_revert
+        reverted_hash['hello'].should == [:a]
+
+        reverted_hash['hi'].should include :b, :c
+        reverted_hash['hi'].size.should == 2
       end
 
       it "should try keys in hash until triggered" do
