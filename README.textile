@@ -2,6 +2,8 @@ h1. Sugar high!
 
 Inspired by the 'zucker' project.
 
+!https://secure.travis-ci.org/kristianmandrup/sugar-high.png(Build Status)!:http://travis-ci.org/kristianmandrup/sugar-high
+
 h2. Install
 
 <code>gem install sugar-high</code>
