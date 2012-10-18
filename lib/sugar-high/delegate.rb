@@ -41,11 +41,21 @@ end
 
 # http://blog.jayfields.com/2008/02/ruby-replace-methodmissing-with-dynamic.html
 class DelegateDecorator
-  def initialize(subject)
-    subject.public_methods(false).each do |meth|
+  def initialize(subject, options = {})
+    options[:only]   ||= []
+    options[:except] ||= []
+    options[:only].map!(&:to_s)
+    options[:except].map!(&:to_s)
+
+    meths = subject.public_methods(false)
+    meths = meths & options[:only] unless options[:only].empty?
+
+    meths.each do |meth|
       (class << self; self; end).class_eval do
-        define_method meth do |*args|
-          subject.send meth, *args
+        unless options[:except].include? meth.to_s
+          define_method meth do |*args|
+            subject.send meth, *args
+          end
         end
       end
     end
